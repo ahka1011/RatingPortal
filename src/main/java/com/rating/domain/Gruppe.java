@@ -11,13 +11,13 @@ public class Gruppe {
 	@Column
 	private String bezeichnung;
 	@Column
-	private String kurs_nr;
+	private int kurs_nr;
 	
 	public Gruppe() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Gruppe(int gruppen_nr, String bezeichnung, String kurs_nr) {
+	public Gruppe(int gruppen_nr, String bezeichnung, int kurs_nr) {
 		super();
 		this.gruppen_nr = gruppen_nr;
 		this.bezeichnung = bezeichnung;
@@ -35,10 +35,10 @@ public class Gruppe {
 	public void setBezeichnung(String bezeichnung) {
 		this.bezeichnung = bezeichnung;
 	}
-	public String getKurs_nr() {
+	public int getKurs_nr() {
 		return kurs_nr;
 	}
-	public void setKurs_nr(String kurs_nr) {
+	public void setKurs_nr(int kurs_nr) {
 		this.kurs_nr = kurs_nr;
 	}
 	@Override
