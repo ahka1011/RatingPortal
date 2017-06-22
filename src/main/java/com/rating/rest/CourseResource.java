@@ -110,6 +110,21 @@ public class CourseResource extends BaseResource {
         }
     }
     
+    @POST
+    @Produces("application/json")
+    @Path("/prof/createcriteria")
+    public void newCriteria(@HeaderParam("token") String token, @FormParam("bezeichnung") String bezeichnung, @FormParam("gewichtung") double gewichtung,
+            @FormParam("gruppen_nr") int gruppen_nr) {
+        try {
+            if (isValid(token)) {
+                DatabaseConnector.kriteriumAnlegen(bezeichnung, gewichtung, gruppen_nr);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    
     @GET
     @Produces("application/json")
     @Path("/group/{gruppen_nr}")

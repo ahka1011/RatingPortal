@@ -51,6 +51,7 @@ public class DatabaseConnector {
 		}
 	}
 
+	@SuppressWarnings({ "deprecation", "rawtypes", "finally" })
 	public static boolean kursAnlegen(int kursNr, String kursName, String semester, String kuerzel) {
 		Session session = sessionFactory.openSession();
 		Transaction trans = session.beginTransaction();
@@ -76,32 +77,33 @@ public class DatabaseConnector {
 	}
 	
 	
-//	public static boolean kriteriumAnlegen(String bezeichnung, double gewichtung, int gruppen_nr) {
-//		Session session = sessionFactory.openSession();
-//		Transaction trans = session.beginTransaction();
-//		boolean b = false;
-//		try {
-//			String sql = "INSERT INTO kriterium(bezeichnung, gewichtung, gruppen_nr) values ('"
-//					+ kursNr + "', '" + kursName + "', '" + semester + "', '" + kuerzel + "')";
-//			SQLQuery query = session.createSQLQuery(sql);
-//			query.executeUpdate();
-//			session.getTransaction().commit();
-//			session.flush();
-//			b = true;
-//		}
-//
-//		catch (HibernateException he) {
-//			he.printStackTrace();
-//			trans.rollback();
-//			session.close();
-//		} finally {
-//			session.close();
-//			return b;
-//		}
-//	}
+	public static boolean kriteriumAnlegen(String bezeichnung, double gewichtung, int gruppen_nr) {
+		Session session = sessionFactory.openSession();
+		Transaction trans = session.beginTransaction();
+		boolean b = false;
+		try {
+			String sql = "INSERT INTO kriterium(bezeichnung, gewichtung, gruppen_nr) values ('"
+					+ bezeichnung + "', '" + gewichtung + "', '" + gruppen_nr + "'')";
+			SQLQuery query = session.createSQLQuery(sql);
+			query.executeUpdate();
+			session.getTransaction().commit();
+			session.flush();
+			b = true;
+		}
+
+		catch (HibernateException he) {
+			he.printStackTrace();
+			trans.rollback();
+			session.close();
+		} finally {
+			session.close();
+			return b;
+		}
+	}
 
 
 	// toDo
+	@SuppressWarnings("finally")
 	public static List<Kursvorlage> studentKursListeSuchen(String iz_kuerzel) {
 
 		Session session = sessionFactory.openSession();
