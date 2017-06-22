@@ -76,7 +76,7 @@ public class DatabaseConnector {
 		}
 	}
 	
-	
+	//Testkommentar
 	public static boolean kriteriumAnlegen(String bezeichnung, double gewichtung, int gruppen_nr) {
 		Session session = sessionFactory.openSession();
 		Transaction trans = session.beginTransaction();
