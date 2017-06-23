@@ -10,9 +10,9 @@ public class Professor {
 	@Column(name="iz_kuerzel")
 	private String username;
 	@Column(name="vorname")
-	private String forename;
+	private String firstname;
 	@Column(name="nachname")
-	private String surname;
+	private String lastname;
 	@Column(name="email_adresse")
 	private String email;
 	
@@ -21,11 +21,11 @@ public class Professor {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Professor(String username, String forename, String surname, String email) {
+	public Professor(String username, String firstname, String lastname, String email) {
 		super();
 		this.username = username;
-		this.forename = forename;
-		this.surname = surname;
+		this.firstname = firstname;
+		this.lastname = lastname;
 		this.email = email;
 	}
 
@@ -37,20 +37,20 @@ public class Professor {
 		this.username = username;
 	}
 
-	public String getForename() {
-		return forename;
+	public String getFirstname() {
+		return firstname;
 	}
 
-	public void setForename(String forename) {
-		this.forename = forename;
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
 
-	public String getSurname() {
-		return surname;
+	public String getLastname() {
+		return lastname;
 	}
 
-	public void setSurname(String surname) {
-		this.surname = surname;
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
 
 	public String getEmail() {
@@ -63,7 +63,7 @@ public class Professor {
 
 	@Override
 	public String toString() {
-		return "Professor [username=" + username + ", forename=" + forename + ", surname=" + surname + ", email="
+		return "Professor [username=" + username + ", firstname=" + firstname + ", lastname=" + lastname + ", email="
 				+ email + "]";
 	}
 }
