@@ -4,7 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity(name="group")
+@Entity(name="gruppe")
 public class Group {
 	@Id
 	@Column(name="gruppen_nr")
