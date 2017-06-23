@@ -4,58 +4,66 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity(name="kurvorlage")
+@Entity(name="kursvorlage")
 public class Template {
 	@Id
-	private int kurs_nr;
-	@Column
-	private String bezeichnung_kurs;
-	@Column
-	private String semester_kurs;
-	@Column 
-	private String iz_kuerzel;
-	
-	public Template(int kurs_nr, String bezeichnung_kurs, String semester_kurs, String iz_kuerzel) {
-		super();
-		this.kurs_nr = kurs_nr;
-		this.bezeichnung_kurs = bezeichnung_kurs;
-		this.semester_kurs = semester_kurs;
-		this.iz_kuerzel = iz_kuerzel;
-	}
+	@Column(name="kurs_nr")
+	private int course_nr;
+	@Column(name="bezeichnung_kurs")
+	private String course_title;
+	@Column(name="semester_kurs")
+	private String semester;
+	@Column(name="iz_kuerzel")
+	private String username;
 	
 	public Template() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	public int getKurs_nr() {
-		return kurs_nr;
+
+	public Template(int course_nr, String course_title, String semester, String username) {
+		super();
+		this.course_nr = course_nr;
+		this.course_title = course_title;
+		this.semester = semester;
+		this.username = username;
 	}
-	public void setKurs_nr(int kurs_nr) {
-		this.kurs_nr = kurs_nr;
+
+	public int getCourse_nr() {
+		return course_nr;
 	}
-	public String getBezeichnung_kurs() {
-		return bezeichnung_kurs;
+
+	public void setCourse_nr(int course_nr) {
+		this.course_nr = course_nr;
 	}
-	public void setBezeichnung_kurs(String bezeichnung_kurs) {
-		this.bezeichnung_kurs = bezeichnung_kurs;
+
+	public String getCourse_title() {
+		return course_title;
 	}
-	public String getSemester_kurs() {
-		return semester_kurs;
+
+	public void setCourse_title(String course_title) {
+		this.course_title = course_title;
 	}
-	public void setSemester_kurs(String semester_kurs) {
-		this.semester_kurs = semester_kurs;
+
+	public String getSemester() {
+		return semester;
 	}
-	public String getIz_kuerzel() {
-		return iz_kuerzel;
+
+	public void setSemester(String semester) {
+		this.semester = semester;
 	}
-	public void setIz_kuerzel(String iz_kuerzel) {
-		this.iz_kuerzel = iz_kuerzel;
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	@Override
 	public String toString() {
-		return "Kursvorlage [kurs_nr=" + kurs_nr + ", bezeichnung_kurs=" + bezeichnung_kurs + ", semester_kurs="
-				+ semester_kurs + ", iz_kuerzel=" + iz_kuerzel + "]";
+		return "Template [course_nr=" + course_nr + ", course_title=" + course_title + ", semester=" + semester
+				+ ", username=" + username + "]";
 	}
 }
