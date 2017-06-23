@@ -88,6 +88,35 @@ public class ProfessorResource extends BaseResource {
         return c;
     }
     
-    
+    @POST
+    @Produces("application/json")
+    @Path("/createCourse")
+    public void newCourse(@HeaderParam("token") String token, @FormParam("kursNummer") int kursNr, @FormParam("kursName") String kursName,
+            @FormParam("semester") String semester, @FormParam("kuerzel") String kuerzel) {
+        try {
+            if (isValid(token)) {
+                DatabaseConnector.kurseAnlegen(kursNr, kursName, semester, kuerzel);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
+    @GET
+    @Produces("application/json")
+    @Path("/templateList/{kuerzel}")
+    public List<Kursvorlage> getTemplates(@HeaderParam("token") String token, @PathParam("kuerzel") String kuerzel) {
+        List<Kursvorlage> c = null;
+        try {
+            if (isValid(token)) {
+                c = DatabaseConnector.vorlagen(kuerzel);
+                return c;
+            } else {
+                return c;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return c;
+    }
 }

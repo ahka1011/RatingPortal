@@ -8,6 +8,8 @@
 <%
 User u = (User)session.getAttribute("user");
 String uid = u.getUsername();
+String t = u.getToken().toString();
+String role = u.getToken().role(t);
 %>
 <%=u.toString()%>
 
@@ -55,11 +57,11 @@ String uid = u.getUsername();
 						</div>
 					</div>
 					<div class="col-lg-1">
-						<img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" width="100px" height="100px">
+						<img src="img/userIcon.png" width="100px" height="100px">
 					</div>
 					<div class="col-lg-1">
-						 <span class="label label-default" id="username">Max Mustermann</span> 
-						<button type="button" onclick="Logout()" class="btn btn-default">
+						 <h4><label id="username" style="text-align: center"></label></h4> 
+						<button type="button" onclick="Logout()" class="btn btn-default" style="text-align: center">
 							abmelden
 						</button>
 					</div>
@@ -74,67 +76,99 @@ String uid = u.getUsername();
 						</h3>
 						<div class="row">
 							<div class="col-lg-12" >
-								<table class="table table-responsive">
-									<tr>	
-										<td>
-											<label>AWP</label>
-										</td>
-										<td style= "text-align: right">
-											<a href="Kursseite_Dozent.html" class="btn btn-default"><span class="glyphicon glyphicon-eye-open"></span> Kurs einsehen</a>
-											<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span>Kurs löschen</a>
-											<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> Bewertung freigeben</a>
-										</td>
-									</tr>
+								<table class="table table-responsive" id="kursTabelle">
 									<tr>
 										<td>
-											<label>EWI</label>
+											<h4><label>Nr.</label></h4>
+										</td>
+										<td>
+											<h4><label>Titel</label></h4>
+										</td>
+										<td>
+											<h4><label>Semester</label></h4>
+										</td>
+										<td>
+											<h4><label>Prof.</label></h4>
+										</td>
+									</tr>
+									<!-- 
+									<tr>	
+										<td>
+											<label id="kursNr0">1</label>
+										</td>
+										<td>
+											<label id="kursTitle0">AWP</label>
+										</td>
+										<td>
+											<label id="kursSemester0">6</label>
+										</td>
+										<td>
+											<label id="kursProf0">Hr. Stengel</label>
 										</td>
 										<td style= "text-align: right">
-											<a href="Kursseite_Dozent.html" class="btn btn-default"><span class="glyphicon glyphicon-eye-open"></span> Kurs einsehen</a>
+											<a href="Kursseite_Dozent.jsp" class="btn btn-default"><span class="glyphicon glyphicon-eye-open"></span> Kurs einsehen</a>
 											<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span>Kurs l&ouml;schen</a>
 											<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> Bewertung freigeben</a>
 										</td>
 									</tr>
+									 -->
 								</table>
-							
+							<div id=vorlage>
 							<h3 class="text-left">
 								Vorlagen
 							</h3>
 							<div class="row">
 								<div class="col-lg-12" >
-									<table class="table table-responsive">
-										<tr>	
+									<table class="table table-responsive" id=tableVorlage>
+										<tr>
 											<td>
-												<label style="text-align: center">AWP</label>
+												<h4><label>Nr.</label></h4>
 											</td>
 											<td>
+												<h4><label>Titel</label></h4>
 											</td>
-											<td style="text-align: right">
-												<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-file"></span> Vorlage duplizieren</a>
-												<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Vorlage bearbeiten</a>
-												<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Vorlage löschen</a>
-												<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Kurs anlegen</a>
+											<td>
+												<h4><label>Semester</label></h4>
+											</td>
+											<td>
+												<h4><label>Prof.</label></h4>
 											</td>
 										</tr>
 										<tr>
 											<td>
-												<label style="text-align: center">EWI</label>
-											</td>
-											<td>
-											</td>
-											<td style= "text-align: right">
-												<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-file"></span> Vorlage duplizieren</a>
-												<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Vorlage bearbeiten</a>
-												<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Vorlage löschen</a>
-												<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Kurs anlegen</a>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Neue Vorlage</a>
+												<button class="btn btn-default" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span> Neue Vorlage</button>
 											</td>
 										</tr>
 									</table>
+									<!-- Modal -->
+									  <div class="modal fade" id="myModal" role="dialog">
+									    <div class="modal-dialog">
+									    
+									      <!-- Modal content-->
+									      <div class="modal-content">
+									      	<div class="modal-header">
+									        	<button type="button" class="close" data-dismiss="modal">&times;</button>
+									        	<h4 class="modal-title">Neue Vorlage</h4>
+									        </div>
+									        <div class="modal-body">
+									        	<p>Kurs Nr.: </p>
+									        	<input type="text" id="inputKursNr" class="form-control" placeholder="Kursnummer">
+									        	<p>Titel: </p>
+									        	<input type="text" id="inputTitle" class="form-control" placeholder="Kurstitel">
+									          	<p>Semester: </p>
+									          	<input type="text" id="inputSemester" class="form-control" placeholder="Semester">
+									          	<p>Professor: </p>
+									          	<input type="text" id="inputProf" class="form-control" placeholder="Professor">
+									        </div>
+									        <div class="modal-footer">
+									        	<button type="button" class="btn btn-default" data-dismiss="modal" id="anlegen">Create</button>
+									        	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									      	</div>
+									    	</div>
+									      
+									    </div>
+									  </div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -146,30 +180,143 @@ String uid = u.getUsername();
 </div>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/scripts.js"></script>
+    <script src="js/kursAnlegen.js"></script>
+	<script type="text/javascript">
+	function Logout(){
+		if (window.confirm ("Wollen Sie sich wirklich abmelden?") == true){
+			$.ajax({
+				type: "POST",
+				url: "https://localhost:8443/ratingp/rest/session/logout",
+				dataType: 'json',
+				data: {},
+				success: function(data){
+						alert(JSON.stringify(data));
+						window.location.href = "Anmeldemaske.jsp";
+				},
+				error: function(request, status, error) {
+					alert("Request failed!");
+					console.log("Request: " + request);
+					console.log("Status: " + status);
+					console.log("Error: " + error);
+				}
+			});
+		}
+}
+	</script>
     <script type="text/javascript">
-   	function getdata() {
-    $.ajax({
-			type: "GET",
-			url: "https://localhost:8443/ratingp/rest/courses/student/<%=uid%>",
-			dataType: 'json',
-			success: function(data){
-				if (data != null){
-					alert(JSON.stringify(data));
-				}
-				else{
-					alert("Incorrect username or password!");
-				}
-			},
-			error: function(request, status, error) {
-				alert("Request failed!");
-				console.log("Request: " + request);
-				console.log("Status: " + status);
-				console.log("Error: " + error);
-			}
-		});
-    }
+    function getdata() {
+    	$.ajaxSetup({
+    	    beforeSend: function(xhr) {
+    	        xhr.setRequestHeader('token', '<%=t%>');
+    	    }
+    	});
+    	document.getElementById("username").innerHTML = "<%=uid%>";
+    	document.getElementById("vorlage").style.visibility = "hidden";
+    	   	if("<%=role%>" == "Professor"){
+    	   	document.getElementById("myImg").style.visibility = "visible";
+    	   	$.ajax({
+ 				type: "GET",
+ 				url: "https://localhost:8443/ratingp/rest/prof/templateList/<%=uid%>",
+ 				dataType: 'json',
+ 				success: function(data){
+ 					if (data != null){
+ 						var i = 0;
+ 						var table = document.getElementById("tableVorlage");
+ 						$.each(data, function() {
+ 							var row = table.insertRow(1);
+ 							var cell1 = row.insertCell(0);
+ 							var cell2 = row.insertCell(1);
+ 							var cell3 = row.insertCell(2);
+ 							var cell4 = row.insertCell(3);
+ 							cell1.innerHTML = data[i].kurs_nr;
+ 							cell2.innerHTML = data[i].bezeichnung_kurs;
+ 							cell3.innerHTML = data[i].semester_kurs;
+ 							cell4.innerHTML = data[i].iz_kuerzel;
+ 							++i;
+ 						});
+ 						var vorlage = document.getElementById("tableVorlage");
+ 					}
+ 					else{
+ 						alert("Data: null!");
+ 					}
+ 				},
+ 				error: function(request, status, error) {
+ 					alert("Request failed!");
+ 					console.log("Request: " + request);
+ 					console.log("Status: " + status);
+ 					console.log("Error: " + error);
+ 				}
+ 			});
+    	   	 $.ajax({
+ 				type: "GET",
+ 				url: "https://localhost:8443/ratingp/rest/courses/prof/<%=uid%>",
+ 				dataType: 'json',
+ 				success: function(data){
+ 					if (data != null){
+ 						var i = 0;
+ 						var table = document.getElementById("kursTabelle");
+ 						$.each(data, function() {
+ 							var row = table.insertRow(1);
+ 							var cell1 = row.insertCell(0);
+ 							var cell2 = row.insertCell(1);
+ 							var cell3 = row.insertCell(2);
+ 							var cell4 = row.insertCell(3);
+ 							cell1.innerHTML = data[i].kurs_nr;
+ 							cell2.innerHTML = data[i].bezeichnung_kurs;
+ 							cell3.innerHTML = data[i].semester_kurs;
+ 							cell4.innerHTML = data[i].iz_kuerzel;++i;
+ 						});
+ 						var vorlage = document.getElementById("tableVorlage");
+ 					}
+ 					else{
+ 						alert("Data: null!");
+ 					}
+ 				},
+ 				error: function(request, status, error) {
+ 					alert("Request failed!");
+ 					console.log("Request: " + request);
+ 					console.log("Status: " + status);
+ 					console.log("Error: " + error);
+ 				}
+ 			});
+    	   	}
+    	   	else if ("<%=role%>" == "Student"){
+    	   		pfad = "student";
+    	   	}
+    	   	
+    	    $.ajax({
+    				type: "GET",
+    				url: "https://localhost:8443/ratingp/rest/stud/courses/<%=uid%>",
+    				dataType: 'json',
+    				success: function(data){
+    					if (data != null){
+    						var i = 0;
+    						var table = document.getElementById("kursTabelle");
+    						$.each(data, function() {
+    							var row = table.insertRow(1);
+    							var cell1 = row.insertCell(0);
+    							var cell2 = row.insertCell(1);
+    							var cell3 = row.insertCell(2);
+    							var cell4 = row.insertCell(3);
+    							cell1.innerHTML = data[i].kurs_nr;
+    							cell2.innerHTML = data[i].bezeichnung_kurs;
+    							cell3.innerHTML = data[i].semester_kurs;
+    							cell4.innerHTML = data[i].iz_kuerzel;
+    							++i;
+    						});
+    					}
+    					else{
+    						alert("Data: null!");
+    					}
+    				},
+    				error: function(request, status, error) {
+    					alert("Request failed!");
+    					console.log("Request: " + request);
+    					console.log("Status: " + status);
+    					console.log("Error: " + error);
+    				}
+    			});
+    	}
     </script>
   </body>
 </html>

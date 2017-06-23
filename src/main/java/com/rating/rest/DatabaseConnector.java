@@ -231,4 +231,56 @@ public class DatabaseConnector {
 			return p;
 		}
 	}
+	
+	@SuppressWarnings({ "deprecation", "rawtypes", "finally" })
+    public static boolean kurseAnlegen(int kursNr, String kursName, String semester, String kuerzel) {
+        Session session = sessionFactory.openSession();
+        Transaction trans = session.beginTransaction();
+        boolean b = false;
+        try {
+            String sql = "INSERT INTO kurse(Kurs_nr, Bezeichnung_kurs, Semester_kurs, Iz_kuerzel) values ('"
+                    + kursNr + "', '" + kursName + "', '" + semester + "', '" + kuerzel + "')";
+            SQLQuery query = session.createSQLQuery(sql);
+            query.executeUpdate();
+            session.getTransaction().commit();
+            session.flush();
+            b = true;
+        }
+        catch (HibernateException he) {
+            he.printStackTrace();
+            trans.rollback();
+            session.close();
+        } finally {
+            session.close();
+            return b;
+        }
+    }
+	
+	@SuppressWarnings({ "deprecation", "rawtypes", "finally" })
+    public static List<Kursvorlage> vorlagen(String kuerzel) {
+
+        Session session = sessionFactory.openSession();
+        Transaction trans = session.beginTransaction();
+        List<Kursvorlage> k = new ArrayList<Kursvorlage>();
+
+        try {
+            String sql = "SELECT * FROM Kursvorlage WHERE iz_kuerzel = '" + kuerzel + "';";
+
+            SQLQuery query = session.createSQLQuery(sql);
+            query.addEntity(Kursvorlage.class);
+
+            List results = query.list();
+            for (int i = 0; i < results.size(); i++) {
+                k.add((Kursvorlage) results.get(i));
+            }
+        } catch (HibernateException he) {
+            he.printStackTrace();
+            trans.rollback();
+            session.close();
+
+        } finally {
+            session.close();
+            return k;
+        }
+    }
 }
