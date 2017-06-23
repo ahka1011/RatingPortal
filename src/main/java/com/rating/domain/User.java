@@ -6,30 +6,46 @@ import com.rating.rest.DatabaseConnector;
 
 public class User {
 
-	private String surname;
-	private String forename;
+	private String firstname;
+	private String lastname;
 	private String email;
 	private String username;
 	private String role;
 	public static final String STUDENT = "Student";
 	public static final String PROFESSOR = "Professor";
-	List<Kursvorlage> belegteKurse;
+	List<Template> myCourses;
 	private Token token;
-
-	public String getSurname() {
-		return surname;
+	
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	public User(String firstname, String lastname, String email, String username, String role, Token token) {
+		super();
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.email = email;
+		this.username = username;
+		this.role = role;
+		this.myCourses = DatabaseConnector.studentKursListeSuchen(username);
+		this.token = token;
+	}
+	
+	public String getFirstname() {
+		return firstname;
 	}
 
-	public void setSurname(String surname) {
-		this.surname = surname;
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
 
-	public String getForename() {
-		return forename;
+	public String getLastname() {
+		return lastname;
 	}
 
-	public void setForename(String forename) {
-		this.forename = forename;
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
 
 	public String getEmail() {
@@ -56,12 +72,12 @@ public class User {
 		this.role = role;
 	}
 
-	public List<Kursvorlage> getBelegteKurse() {
-		return belegteKurse;
+	public List<Template> getMyCourses() {
+		return myCourses;
 	}
 
-	public void setBelegteKurse(List<Kursvorlage> belegteKurse) {
-		this.belegteKurse = belegteKurse;
+	public void setMyCourses(List<Template> myCourses) {
+		this.myCourses = myCourses;
 	}
 
 	public Token getToken() {
@@ -82,18 +98,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "surname=" + surname + ", forename=" + forename + ", email=" + email + ", username=" + username
-				+ ", role=" + role + ", liste=" + belegteKurse + ", token=" + token;
-	}
-
-	public User(String surname, String forename, String email, String username, String role, Token token) {
-		super();
-		this.surname = surname;
-		this.forename = forename;
-		this.email = email;
-		this.username = username;
-		this.role = role;
-		this.belegteKurse = DatabaseConnector.studentKursListeSuchen(username);
-		this.token = token;
+		return "User [firstname=" + firstname + ", lastname=" + lastname + ", email=" + email + ", username=" + username
+				+ ", role=" + role + ", token=" + token + "]";
 	}
 }

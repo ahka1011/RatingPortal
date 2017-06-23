@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity(name="kurvorlage")
-public class Kursvorlage {
+public class Template {
 	@Id
 	private int kurs_nr;
 	@Column
@@ -15,7 +15,7 @@ public class Kursvorlage {
 	@Column 
 	private String iz_kuerzel;
 	
-	public Kursvorlage(int kurs_nr, String bezeichnung_kurs, String semester_kurs, String iz_kuerzel) {
+	public Template(int kurs_nr, String bezeichnung_kurs, String semester_kurs, String iz_kuerzel) {
 		super();
 		this.kurs_nr = kurs_nr;
 		this.bezeichnung_kurs = bezeichnung_kurs;
@@ -23,7 +23,7 @@ public class Kursvorlage {
 		this.iz_kuerzel = iz_kuerzel;
 	}
 	
-	public Kursvorlage() {
+	public Template() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

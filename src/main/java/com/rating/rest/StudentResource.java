@@ -8,7 +8,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
-import com.rating.domain.Kursvorlage;
+import com.rating.domain.Template;
 import com.rating.domain.Student;
 
 @Path("/stud")
@@ -36,9 +36,9 @@ public class StudentResource extends BaseResource{
 	@GET
     @Produces("application/json")
     @Path("/courses/{iz_kuerzel}")
-    public List<Kursvorlage> getCoursesOfStudent(@HeaderParam("token") String token,
+    public List<Template> getCoursesOfStudent(@HeaderParam("token") String token,
             @PathParam("iz_kuerzel") String iz_kuerzel) {
-        List<Kursvorlage> c = null;
+        List<Template> c = null;
         try {
             if (isValid(token)) {
                 c = DatabaseConnector.studentKursListeSuchen(iz_kuerzel);
