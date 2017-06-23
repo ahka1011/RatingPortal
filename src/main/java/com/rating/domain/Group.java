@@ -7,10 +7,11 @@ import javax.persistence.Id;
 @Entity(name="group")
 public class Group {
 	@Id
+	@Column(name="gruppen_nr")
 	private int group_nr;
-	@Column
+	@Column(name="bezeichnung")
 	private String description;
-	@Column
+	@Column(name="kurs_nr")
 	private int course_nr;
 	
 	public Group() {
