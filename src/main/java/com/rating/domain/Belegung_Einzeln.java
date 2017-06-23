@@ -3,6 +3,7 @@ package com.rating.domain;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
+// Kommentar
 @Entity(name = "belegung_einzeln")
 public class Belegung_Einzeln {
 	@Column
