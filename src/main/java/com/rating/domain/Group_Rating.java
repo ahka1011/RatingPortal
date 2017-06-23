@@ -3,55 +3,55 @@ package com.rating.domain;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
-@Entity(name="gruppe_berechnung")
-public class Gruppe_Berechnung {
-	@Column
-	private String iz_kuerzel;
-	@Column
-	private int gruppen_nr;
-	@Column
-	private int kurs_nr;
-	@Column
-	private double gruppen_note;
+@Entity(name="group_rating")
+public class Group_Rating {
+	@Column(name="iz_kuerzel")
+	private String username;
+	@Column(name="gruppen_nr")
+	private int group_nr;
+	@Column(name="kurs_nr")
+	private int course_nr;
+	@Column(name="gruppen_note")
+	private double group_mark;
 
-	public Gruppe_Berechnung() {
+	public Group_Rating() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public String getIz_kuerzel() {
-		return iz_kuerzel;
+	public String getUsername() {
+		return username;
 	}
-	public void setIz_kuerzel(String iz_kuerzel) {
-		this.iz_kuerzel = iz_kuerzel;
+	public void setUsername(String username) {
+		this.username = username;
 	}
-	public int getGruppen_nr() {
-		return gruppen_nr;
+	public int getGroup_nr() {
+		return group_nr;
 	}
-	public void setGruppen_nr(int gruppen_nr) {
-		this.gruppen_nr = gruppen_nr;
+	public void setGroup_nr(int group_nr) {
+		this.group_nr = group_nr;
 	}
-	public int getKurs_nr() {
-		return kurs_nr;
+	public int getCourse_nr() {
+		return course_nr;
 	}
-	public void setKurs_nr(int kurs_nr) {
-		this.kurs_nr = kurs_nr;
+	public void setCourse_nr(int course_nr) {
+		this.course_nr = course_nr;
 	}
-	public double getGruppen_note() {
-		return gruppen_note;
+	public double getGroup_mark() {
+		return group_mark;
 	}
-	public void setGruppen_note(double gruppen_note) {
-		this.gruppen_note = gruppen_note;
+	public void setGroup_mark(double group_mark) {
+		this.group_mark = group_mark;
 	}
-	public Gruppe_Berechnung(String iz_kuerzel, int gruppen_nr, int kurs_nr, double gruppen_note) {
+	public Group_Rating(String username, int group_nr, int course_nr, double group_mark) {
 		super();
-		this.iz_kuerzel = iz_kuerzel;
-		this.gruppen_nr = gruppen_nr;
-		this.kurs_nr = kurs_nr;
-		this.gruppen_note = gruppen_note;
+		this.username = username;
+		this.group_nr = group_nr;
+		this.course_nr = course_nr;
+		this.group_mark = group_mark;
 	}
 	@Override
 	public String toString() {
-		return "Gruppe_Berechnung [iz_kuerzel=" + iz_kuerzel + ", gruppen_nr=" + gruppen_nr + ", kurs_nr=" + kurs_nr
-				+ ", gruppen_note=" + gruppen_note + "]";
+		return "Group_Rating [username=" + username + ", group_nr=" + group_nr + ", course_nr=" + course_nr
+				+ ", group_mark=" + group_mark + "]";
 	}
 }
