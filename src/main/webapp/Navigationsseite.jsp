@@ -9,7 +9,7 @@
 User u = (User)session.getAttribute("user");
 String uid = u.getUsername();
 String t = u.getToken().toString();
-String role = u.getToken().role(t);
+String role = u.getRole();
 %>
 <%=u.toString()%>
 
@@ -113,13 +113,13 @@ String role = u.getToken().role(t);
 									</tr>
 									 -->
 								</table>
-							<div id=vorlage>
+							<div id=template>
 							<h3 class="text-left">
 								Vorlagen
 							</h3>
 							<div class="row">
 								<div class="col-lg-12" >
-									<table class="table table-responsive" id=tableVorlage>
+									<table class="table table-responsive" id=tableTemplate>
 										<tr>
 											<td>
 												<h4><label>Nr.</label></h4>
@@ -144,7 +144,6 @@ String role = u.getToken().role(t);
 									  <div class="modal fade" id="myModal" role="dialog">
 									    <div class="modal-dialog">
 									    
-									      <!-- Modal content-->
 									      <div class="modal-content">
 									      	<div class="modal-header">
 									        	<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -161,7 +160,7 @@ String role = u.getToken().role(t);
 									          	<input type="text" id="inputProf" class="form-control" placeholder="Professor">
 									        </div>
 									        <div class="modal-footer">
-									        	<button type="button" class="btn btn-default" data-dismiss="modal" id="anlegen">Create</button>
+									        	<button type="button" class="btn btn-default" data-dismiss="modal" id="submitTemplate">Create</button>
 									        	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 									      	</div>
 									    	</div>
@@ -180,7 +179,7 @@ String role = u.getToken().role(t);
 </div>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/kursAnlegen.js"></script>
+    <script src="js/createTemplate.js"></script>
 	<script type="text/javascript">
 	function Logout(){
 		if (window.confirm ("Wollen Sie sich wirklich abmelden?") == true){
@@ -211,9 +210,9 @@ String role = u.getToken().role(t);
     	    }
     	});
     	document.getElementById("username").innerHTML = "<%=uid%>";
-    	document.getElementById("vorlage").style.visibility = "hidden";
-    	   	if("<%=role%>" == "Professor"){
-    	   	document.getElementById("myImg").style.visibility = "visible";
+    	document.getElementById("template").style.visibility = "hidden";
+    	   	if("<%=role%>" == "Student"){
+    	   	document.getElementById("template").style.visibility = "visible";
     	   	$.ajax({
  				type: "GET",
  				url: "https://localhost:8443/ratingp/rest/prof/templateList/<%=uid%>",
@@ -221,7 +220,7 @@ String role = u.getToken().role(t);
  				success: function(data){
  					if (data != null){
  						var i = 0;
- 						var table = document.getElementById("tableVorlage");
+ 						var table = document.getElementById("tableTemplate");
  						$.each(data, function() {
  							var row = table.insertRow(1);
  							var cell1 = row.insertCell(0);
@@ -234,7 +233,7 @@ String role = u.getToken().role(t);
  							cell4.innerHTML = data[i].iz_kuerzel;
  							++i;
  						});
- 						var vorlage = document.getElementById("tableVorlage");
+ 						var vorlage = document.getElementById("tableTemplate");
  					}
  					else{
  						alert("Data: null!");
@@ -266,7 +265,7 @@ String role = u.getToken().role(t);
  							cell3.innerHTML = data[i].semester_kurs;
  							cell4.innerHTML = data[i].iz_kuerzel;++i;
  						});
- 						var vorlage = document.getElementById("tableVorlage");
+ 						var vorlage = document.getElementById("tableTemplate");
  					}
  					else{
  						alert("Data: null!");
@@ -280,7 +279,7 @@ String role = u.getToken().role(t);
  				}
  			});
     	   	}
-    	   	else if ("<%=role%>" == "Student"){
+    	   	else if ("<%=role%>" == "Studen"){
     	   		pfad = "student";
     	   	}
     	   	

@@ -2,6 +2,7 @@ package com.rating.rest;
 
 import java.util.List;
 
+import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
@@ -15,21 +16,90 @@ import com.rating.domain.Student;
 
 @Path("/prof")
 public class ProfessorResource extends BaseResource {
-	/*
-    @POST
+	
+
+	@POST
     @Produces("application/json")
-    @Path("/newcourse")
-    public void newCourse(@HeaderParam("token") String token, @FormParam("kursName") String kursName,
-            @FormParam("semester") String semester, @FormParam("kuerzel") String kuerzel) {
+    @Path("/createtemplate")
+    public void newCourse(@HeaderParam("token") String token, @FormParam("kursNummer") int kursNr,
+            @FormParam("kursName") String kursName, @FormParam("semester") String semester,
+            @FormParam("kuerzel") String kuerzel) {
         try {
             if (isValid(token)) {
-                DatabaseConnector.kursAnlegen(kursName, semester, kuerzel);
+                DatabaseConnector.createTemplate(kursNr, kursName, semester, kuerzel);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    */
+	
+	@DELETE
+	@Produces("application/json")
+	@Path("/deletecourse")
+	public void deleteCourse(@HeaderParam("token") String token,
+			@FormParam("kuerzel") String kuerzel) {
+		try {
+			if (isValid(token)) {
+				DatabaseConnector.deleteTemplate(kuerzel);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@POST
+	@Produces("application/json")
+	@Path("/createcriteria")
+	public void newCriteria(@HeaderParam("token") String token, @FormParam("bezeichnung") String bezeichnung,
+			@FormParam("gewichtung") double gewichtung, @FormParam("gruppen_nr") int gruppen_nr) {
+		try {
+			if (isValid(token)) {
+				DatabaseConnector.kriteriumAnlegen(bezeichnung, gewichtung, gruppen_nr);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@POST
+	@Produces("application/json")
+	@Path("/deletecriteria")
+	public void deleteCriteria(@HeaderParam("token") String token, @FormParam("bezeichnung") String bezeichnung) {
+		try {
+			if (isValid(token)) {
+				DatabaseConnector.kriteriumLöschen(bezeichnung);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@POST
+	@Produces("application/json")
+	@Path("/creategroup")
+	public void newGroup(@HeaderParam("token") String token, @FormParam("gruppen_nr") int gruppen_nr, @FormParam("bezeichnung") String bezeichnung, @FormParam("kurs_nr") int kurs_nr) {
+		try {
+			if (isValid(token)) {
+				DatabaseConnector.gruppenAnlegen(gruppen_nr, bezeichnung, kurs_nr);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@POST
+	@Produces("application/json")
+	@Path("/deletegroup")
+	public void deleteGroup(@HeaderParam("token") String token, @FormParam("bezeichnung") String bezeichnung) {
+		try {
+			if (isValid(token)) {
+				DatabaseConnector.gruppenLöschen(bezeichnung);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
     @GET
     @Produces("application/json")
     @Path("course/group/{gruppen_nr}")
@@ -88,35 +158,6 @@ public class ProfessorResource extends BaseResource {
         return c;
     }
     
-    @POST
-    @Produces("application/json")
-    @Path("/createCourse")
-    public void newCourse(@HeaderParam("token") String token, @FormParam("kursNummer") int kursNr, @FormParam("kursName") String kursName,
-            @FormParam("semester") String semester, @FormParam("kuerzel") String kuerzel) {
-        try {
-            if (isValid(token)) {
-                DatabaseConnector.kurseAnlegen(kursNr, kursName, semester, kuerzel);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+    
 
-    @GET
-    @Produces("application/json")
-    @Path("/templateList/{kuerzel}")
-    public List<Kursvorlage> getTemplates(@HeaderParam("token") String token, @PathParam("kuerzel") String kuerzel) {
-        List<Kursvorlage> c = null;
-        try {
-            if (isValid(token)) {
-                c = DatabaseConnector.vorlagen(kuerzel);
-                return c;
-            } else {
-                return c;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return c;
-    }
 }

@@ -49,7 +49,7 @@
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="row">
-								<div class="col-lg-3">
+								<div class="col-lg-2">
 									<h3><label>Login</label></h3>
 									<form>
 									    <div class="input-group">
@@ -68,7 +68,7 @@
 										</div>
 								  	</form>
 								</div>
-								<div class="col-lg-9">
+								<div class="col-lg-10">
 								</div>
 							</div>
 						</div>

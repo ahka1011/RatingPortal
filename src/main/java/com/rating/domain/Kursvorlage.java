@@ -4,7 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity(name="kurvorlage")
+@Entity(name="kursvorlage")
 public class Kursvorlage {
 	@Id
 	private int kurs_nr;
