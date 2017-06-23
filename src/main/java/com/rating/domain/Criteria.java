@@ -4,7 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity(name="Criteria")
+@Entity(name="kriterium")
 public class Criteria {
 	@Id
 	@Column(name="bezeichnung")
