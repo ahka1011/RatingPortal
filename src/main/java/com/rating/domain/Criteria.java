@@ -4,46 +4,47 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity(name="kriterium")
-public class Kriterium {
+@Entity(name="Criteria")
+public class Criteria {
 	@Id
-	private String bezeichnung;
-	@Column
-	private double gewichtung;
-	@Column
-	private int gruppen_nr;
+	@Column(name="bezeichnung")
+	private String description;
+	@Column(name="gewichtung")
+	private double weighting;
+	@Column(name="gruppen_nr")
+	private int group_nr;
 
-	public Kriterium() {
+	public Criteria() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Kriterium(String bezeichnung, double gewichtung, int gruppen_nr) {
+	public Criteria(String description, double weighting, int group_nr) {
 		super();
-		this.bezeichnung = bezeichnung;
-		this.gewichtung = gewichtung;
-		this.gruppen_nr = gruppen_nr;
+		this.description = description;
+		this.weighting = weighting;
+		this.group_nr = group_nr;
 	}
-	public String getBezeichnung() {
-		return bezeichnung;
+	public String getDescription() {
+		return description;
 	}
-	public void setBezeichnung(String bezeichnung) {
-		this.bezeichnung = bezeichnung;
+	public void setDescription(String description) {
+		this.description = description;
 	}
-	public double getGewichtung() {
-		return gewichtung;
+	public double getWeighting() {
+		return weighting;
 	}
-	public void setGewichtung(double gewichtung) {
-		this.gewichtung = gewichtung;
+	public void setWeighting(double weighting) {
+		this.weighting = weighting;
 	}
-	public int getGruppen_nr() {
-		return gruppen_nr;
+	public int getGroup_nr() {
+		return group_nr;
 	}
-	public void setGruppen_nr(int gruppen_nr) {
-		this.gruppen_nr = gruppen_nr;
+	public void setGroup_nr(int group_nr) {
+		this.group_nr = group_nr;
 	}
 	@Override
 	public String toString() {
-		return "Kriterium [bezeichnung=" + bezeichnung + ", gewichtung=" + gewichtung + ", gruppen_nr=" + gruppen_nr
+		return "Criteria [description=" + description + ", weighting=" + weighting + ", group_nr=" + group_nr
 				+ "]";
 	}
 }
