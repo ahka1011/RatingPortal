@@ -7,52 +7,63 @@ import javax.persistence.Id;
 @Entity(name="professor")
 public class Professor {
 	@Id
-	private String iz_kuerzel;
-	@Column
-	private String vorname;
-	@Column
-	private String nachname;
-	@Column
-	private String email_adresse;
+	@Column(name="iz_kuerzel")
+	private String username;
+	@Column(name="vorname")
+	private String firstname;
+	@Column(name="nachname")
+	private String lastname;
+	@Column(name="email_adresse")
+	private String email;
 	
 	public Professor() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Professor(String iz_kuerzel, String vorname, String nachname, String email_adresse) {
+
+	public Professor(String username, String firstname, String lastname, String email) {
 		super();
-		this.iz_kuerzel = iz_kuerzel;
-		this.vorname = vorname;
-		this.nachname = nachname;
-		this.email_adresse = email_adresse;
+		this.username = username;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.email = email;
 	}
-	public String getVorname() {
-		return vorname;
+
+	public String getUsername() {
+		return username;
 	}
-	public void setVorname(String vorname) {
-		this.vorname = vorname;
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
-	public String getNachname() {
-		return nachname;
+
+	public String getFirstname() {
+		return firstname;
 	}
-	public void setNachname(String nachname) {
-		this.nachname = nachname;
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
-	public String getIz_kuerzel() {
-		return iz_kuerzel;
+
+	public String getLastname() {
+		return lastname;
 	}
-	public void setIz_kuerzel(String iz_kuerzel) {
-		this.iz_kuerzel = iz_kuerzel;
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
-	public String getEmail_adresse() {
-		return email_adresse;
+
+	public String getEmail() {
+		return email;
 	}
-	public void setEmail_adresse(String email_adresse) {
-		this.email_adresse = email_adresse;
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
+
 	@Override
 	public String toString() {
-		return "Professor [iz_kuerzel=" + iz_kuerzel + ", vorname=" + vorname + ", nachname=" + nachname
-				+ ", email_adresse=" + email_adresse + "]";
+		return "Professor [username=" + username + ", firstname=" + firstname + ", lastname=" + lastname + ", email="
+				+ email + "]";
 	}
 }

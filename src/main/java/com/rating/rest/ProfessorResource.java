@@ -11,7 +11,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
-import com.rating.domain.Kursvorlage;
+import com.rating.domain.Template;
 import com.rating.domain.Student;
 
 @Path("/prof")
@@ -19,6 +19,7 @@ public class ProfessorResource extends BaseResource {
 	
 
 	@POST
+<<<<<<< HEAD
     @Produces("application/json")
     @Path("/createtemplate")
     public void newCourse(@HeaderParam("token") String token, @FormParam("kursNummer") int kursNr,
@@ -32,6 +33,21 @@ public class ProfessorResource extends BaseResource {
             e.printStackTrace();
         }
     }
+=======
+	@Produces("application/json")
+	@Path("/createcourse")
+	public void newCourse(@HeaderParam("token") String token, @FormParam("kursNummer") int kursNr,
+			@FormParam("kursName") String kursName, @FormParam("semester") String semester,
+			@FormParam("kuerzel") String kuerzel) {
+		try {
+			if (isValid(token)) {
+				DatabaseConnector.kursAnlegen(kursNr, kursName, semester, kuerzel);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+>>>>>>> 077f3163d6f38b8e5af7d5206847a2b6d9a4cdf0
 	
 	@DELETE
 	@Produces("application/json")
@@ -40,7 +56,11 @@ public class ProfessorResource extends BaseResource {
 			@FormParam("kuerzel") String kuerzel) {
 		try {
 			if (isValid(token)) {
+<<<<<<< HEAD
 				DatabaseConnector.deleteTemplate(kuerzel);
+=======
+				DatabaseConnector.kursLöschen(kuerzel);
+>>>>>>> 077f3163d6f38b8e5af7d5206847a2b6d9a4cdf0
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -123,9 +143,9 @@ public class ProfessorResource extends BaseResource {
     @GET
     @Produces("application/json")
     @Path("/courses/{iz_kuerzel}")
-    public List<Kursvorlage> getCoursesOfProfessor(@HeaderParam("token") String token,
+    public List<Template> getCoursesOfProfessor(@HeaderParam("token") String token,
             @PathParam("iz_kuerzel") String iz_kuerzel) {
-        List<Kursvorlage> c = null;
+        List<Template> c = null;
         try {
             if (isValid(token)) {
                 c = DatabaseConnector.dozentKursListeSuchen(iz_kuerzel);
@@ -142,9 +162,9 @@ public class ProfessorResource extends BaseResource {
     @GET
     @Produces("application/json")
     @Path("/templates/{kurs_nr}")
-    public List<Kursvorlage> getTemplate(@HeaderParam("token") String token,
+    public List<Template> getTemplate(@HeaderParam("token") String token,
             @PathParam("kurs_nr") int kurs_nr) {
-        List <Kursvorlage> c = null;
+        List <Template> c = null;
         try {
             if (isValid(token)) {
                 c = DatabaseConnector.vorlage(kurs_nr);

@@ -13,7 +13,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
-import com.rating.domain.Kursvorlage;
+import com.rating.domain.Template;
 import com.rating.domain.Professor;
 import com.rating.domain.Student;
 
@@ -21,6 +21,45 @@ import com.rating.domain.Student;
 public class CourseResource extends BaseResource {
 
 	/*
+<<<<<<< HEAD
+=======
+	 * static HashMap<String, List<CourseDetailStudent>>
+	 * izkuerzelStudent2courseDetail = new HashMap<String,
+	 * List<CourseDetailStudent>>(); static HashMap<String,
+	 * List<CourseOverviewProfessor>> izkuerzelProfessor2courseDetail = new
+	 * HashMap<String, List<CourseOverviewProfessor>>();
+	 * 
+	 * class CourseDetailStudent { int id; String name; String izKuerzel;
+	 * List<Student> studenten; Professor prof; public CourseDetailStudent(int
+	 * kurs_nr, String iz_kuerzel) { List<Kursvorlage> k =
+	 * DatabaseConnector.vorlage(kurs_nr); prof = new Professor(); prof =
+	 * DatabaseConnector.profInfo(iz_kuerzel); studenten = new
+	 * ArrayList<Student>(); studenten =
+	 * DatabaseConnector.studentenZuKursSuchen(izKuerzel); id = k.getKurs_nr();
+	 * } } class CourseOverviewProfessor { List<CourseDetailProfessor> kurse;
+	 * Professor prof; public CourseOverviewProfessor(String iz_kuerzel) { kurse
+	 * = new ArrayList<CourseDetailProfessor>(); prof =
+	 * DatabaseConnector.profInfo(iz_kuerzel); } } class CourseDetailProfessor {
+	 * int id; String name; String izKuerzel; List<Student> studenten; Professor
+	 * prof; public CourseDetailProfessor(String iz_kuerzel, String kurs_nr) {
+	 * Kursvorlage k = DatabaseConnector.vorlage(kurs_nr); prof = new
+	 * Professor(); prof = DatabaseConnector.profInfo(iz_kuerzel); studenten =
+	 * new ArrayList<Student>(); studenten =
+	 * DatabaseConnector.studentenZuKursSuchen(izKuerzel); id = k.getKurs_nr();
+	 * } }
+	 * 
+	 * @GET
+	 * 
+	 * @Produces("application/json")
+	 * 
+	 * @Path("/student/details/{id}") public List<CourseDetailStudent>
+	 * getCourseDetailsStudent(@HeaderParam("token") String token,
+	 * 
+	 * @PathParam("id") String id) { try { if (isValid(token)) {
+	 * List<CourseDetailStudent> c = izkuerzelStudent2courseDetail.get(id);
+	 * return c; } else { return null; } } catch (Exception e) {
+	 * e.printStackTrace(); } return null; }
+>>>>>>> 077f3163d6f38b8e5af7d5206847a2b6d9a4cdf0
 	 * 
 	 * @GET
 	 * 
@@ -43,7 +82,11 @@ public class CourseResource extends BaseResource {
 			@FormParam("kuerzel") String kuerzel) {
 		try {
 			if (isValid(token)) {
+<<<<<<< HEAD
 				DatabaseConnector.createTemplate(kursNr, kursName, semester, kuerzel);
+=======
+				DatabaseConnector.kursAnlegen(kursNr, kursName, semester, kuerzel);
+>>>>>>> 077f3163d6f38b8e5af7d5206847a2b6d9a4cdf0
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -57,7 +100,11 @@ public class CourseResource extends BaseResource {
 			@FormParam("kuerzel") String kuerzel) {
 		try {
 			if (isValid(token)) {
+<<<<<<< HEAD
 				DatabaseConnector.deleteTemplate(kuerzel);
+=======
+				DatabaseConnector.kursLöschen(kuerzel);
+>>>>>>> 077f3163d6f38b8e5af7d5206847a2b6d9a4cdf0
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -139,9 +186,15 @@ public class CourseResource extends BaseResource {
 	@GET
 	@Produces("application/json")
 	@Path("/student/{iz_kuerzel}")
+<<<<<<< HEAD
 	public List<Kursvorlage> getCoursesOfStudent(@HeaderParam("token") String token,
 			@PathParam("iz_kuerzel") String iz_kuerzel) {
 		List<Kursvorlage> c = null;
+=======
+	public List<Template> getCoursesOfStudent(@HeaderParam("token") String token,
+			@PathParam("iz_kuerzel") String iz_kuerzel) {
+		List<Template> c = null;
+>>>>>>> 077f3163d6f38b8e5af7d5206847a2b6d9a4cdf0
 		try {
 			if (isValid(token)) {
 				c = DatabaseConnector.studentKursListeSuchen(iz_kuerzel);
@@ -158,9 +211,15 @@ public class CourseResource extends BaseResource {
 	@GET
 	@Produces("application/json")
 	@Path("/prof/{iz_kuerzel}")
+<<<<<<< HEAD
 	public List<Kursvorlage> getCoursesOfProfessor(@HeaderParam("token") String token,
 			@PathParam("iz_kuerzel") String iz_kuerzel) {
 		List<Kursvorlage> c = null;
+=======
+	public List<Template> getCoursesOfProfessor(@HeaderParam("token") String token,
+			@PathParam("iz_kuerzel") String iz_kuerzel) {
+		List<Template> c = null;
+>>>>>>> 077f3163d6f38b8e5af7d5206847a2b6d9a4cdf0
 		try {
 			if (isValid(token)) {
 				c = DatabaseConnector.dozentKursListeSuchen(iz_kuerzel);
@@ -177,8 +236,13 @@ public class CourseResource extends BaseResource {
 	@GET
 	@Produces("application/json")
 	@Path("/prof/template/{kurs_nr}")
+<<<<<<< HEAD
 	public List<Kursvorlage> getTemplate(@HeaderParam("token") String token, @PathParam("kurs_nr") int kurs_nr) {
 		List<Kursvorlage> c = null;
+=======
+	public List<Template> getTemplate(@HeaderParam("token") String token, @PathParam("kurs_nr") int kurs_nr) {
+		List<Template> c = null;
+>>>>>>> 077f3163d6f38b8e5af7d5206847a2b6d9a4cdf0
 		try {
 			if (isValid(token)) {
 				c = DatabaseConnector.vorlage(kurs_nr);

@@ -24,7 +24,7 @@ public class DatabaseConnector {
 		StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder();
 		builder.applySettings(config.getProperties());
 		MetadataSources metadataSources = new MetadataSources();
-		metadataSources.addAnnotatedClass(Kursvorlage.class);
+		metadataSources.addAnnotatedClass(Template.class);
 		metadataSources.addAnnotatedClass(Professor.class);
 		metadataSources.addAnnotatedClass(Student.class);
 		Metadata metadata = metadataSources.buildMetadata(builder.build());
@@ -53,6 +53,7 @@ public class DatabaseConnector {
 	}
 
 	@SuppressWarnings({ "deprecation", "rawtypes", "finally" })
+<<<<<<< HEAD
     public static boolean createTemplate(int kursNr, String kursName, String semester, String kuerzel) {
         Session session = sessionFactory.openSession();
         Transaction trans = session.beginTransaction();
@@ -128,6 +129,9 @@ public class DatabaseConnector {
 	
 	@SuppressWarnings({ "deprecation", "rawtypes", "finally" })
 	public static boolean kriteriumLöschen(String bezeichnung) {
+=======
+	public static boolean kursAnlegen(int kursNr, String kursName, String semester, String kuerzel) {
+>>>>>>> 077f3163d6f38b8e5af7d5206847a2b6d9a4cdf0
 		Session session = sessionFactory.openSession();
 		Transaction trans = session.beginTransaction();
 		boolean b = false;
@@ -151,6 +155,82 @@ public class DatabaseConnector {
 	}
 	
 	@SuppressWarnings({ "deprecation", "rawtypes", "finally" })
+<<<<<<< HEAD
+=======
+	public static boolean kursLöschen(String kuerzel) {
+		Session session = sessionFactory.openSession();
+		Transaction trans = session.beginTransaction();
+		boolean b = false;
+		try {
+			String sql = "Delete from kursvorlage where iz_kuerzel = '" + kuerzel + "';";
+			SQLQuery query = session.createSQLQuery(sql);
+			query.executeUpdate();
+			session.getTransaction().commit();
+			session.flush();
+			b = true;
+		}
+
+		catch (HibernateException he) {
+			he.printStackTrace();
+			trans.rollback();
+			session.close();
+		} finally {
+			session.close();
+			return b;
+		}
+	}
+	
+	@SuppressWarnings({ "deprecation", "rawtypes", "finally" })
+	public static boolean kriteriumAnlegen(String bezeichnung, double gewichtung, int gruppen_nr) {
+		Session session = sessionFactory.openSession();
+		Transaction trans = session.beginTransaction();
+		boolean b = false;
+		try {
+			String sql = "INSERT INTO kriterium(bezeichnung, gewichtung, gruppen_nr) values ('" + bezeichnung + "', '"
+					+ gewichtung + "', '" + gruppen_nr + "')";
+			SQLQuery query = session.createSQLQuery(sql);
+			query.executeUpdate();
+			session.getTransaction().commit();
+			session.flush();
+			b = true;
+		}
+
+		catch (HibernateException he) {
+			he.printStackTrace();
+			trans.rollback();
+			session.close();
+		} finally {
+			session.close();
+			return b;
+		}
+	}
+	
+	@SuppressWarnings({ "deprecation", "rawtypes", "finally" })
+	public static boolean kriteriumLöschen(String bezeichnung) {
+		Session session = sessionFactory.openSession();
+		Transaction trans = session.beginTransaction();
+		boolean b = false;
+		try {
+			String sql = "Delete from kriterium where bezeichnung = '" + bezeichnung + "';";
+			SQLQuery query = session.createSQLQuery(sql);
+			query.executeUpdate();
+			session.getTransaction().commit();
+			session.flush();
+			b = true;
+		}
+
+		catch (HibernateException he) {
+			he.printStackTrace();
+			trans.rollback();
+			session.close();
+		} finally {
+			session.close();
+			return b;
+		}
+	}
+	
+	@SuppressWarnings({ "deprecation", "rawtypes", "finally" })
+>>>>>>> 077f3163d6f38b8e5af7d5206847a2b6d9a4cdf0
 	public static boolean gruppenAnlegen(int gruppen_nr, String bezeichnung, int kurs_nr) {
 		Session session = sessionFactory.openSession();
 		Transaction trans = session.beginTransaction();
@@ -200,20 +280,24 @@ public class DatabaseConnector {
 	}
 
 	@SuppressWarnings({ "deprecation", "rawtypes", "finally" })
+<<<<<<< HEAD
 	public static List<Kursvorlage> studentKursListeSuchen(String iz_kuerzel) {
+=======
+	public static List<Template> studentKursListeSuchen(String iz_kuerzel) {
+>>>>>>> 077f3163d6f38b8e5af7d5206847a2b6d9a4cdf0
 
 		Session session = sessionFactory.openSession();
 		Transaction trans = session.beginTransaction();
-		List<Kursvorlage> k = new ArrayList<Kursvorlage>();
+		List<Template> k = new ArrayList<Template>();
 		try {
 			String sql = "SELECT kursvorlage.kurs_nr, kursvorlage.bezeichnung_kurs, kursvorlage.semester_kurs, Kursvorlage.iz_kuerzel  FROM  kursvorlage join belegung_einzeln on belegung_einzeln.bezeichnung_kurs = kursvorlage.bezeichnung_kurs  WHERE belegung_einzeln.iz_kuerzel = '"
 					+ iz_kuerzel + "';";
 			SQLQuery query = session.createSQLQuery(sql);
-			query.addEntity(Kursvorlage.class);
+			query.addEntity(Template.class);
 
 			List results = query.list();
 			for (int i = 0; i < results.size(); i++) {
-				k.add((Kursvorlage) results.get(i));
+				k.add((Template) results.get(i));
 			}
 		} catch (HibernateException he) {
 			he.printStackTrace();
@@ -226,20 +310,24 @@ public class DatabaseConnector {
 	}
 
 	@SuppressWarnings({ "deprecation", "rawtypes", "finally" })
+<<<<<<< HEAD
 	public static List<Kursvorlage> dozentKursListeSuchen(String iz_kuerzel) {
+=======
+	public static List<Template> dozentKursListeSuchen(String iz_kuerzel) {
+>>>>>>> 077f3163d6f38b8e5af7d5206847a2b6d9a4cdf0
 
 		Session session = sessionFactory.openSession();
 		Transaction trans = session.beginTransaction();
-		List<Kursvorlage> k = new ArrayList<Kursvorlage>();
+		List<Template> k = new ArrayList<Template>();
 
 		try {
 			String sql = "SELECT * FROM Kurse WHERE iz_kuerzel = '" + iz_kuerzel + "';";
 			SQLQuery query = session.createSQLQuery(sql);
-			query.addEntity(Kursvorlage.class);
+			query.addEntity(Template.class);
 
 			List results = query.list();
 			for (int i = 0; i < results.size(); i++) {
-				k.add((Kursvorlage) results.get(i));
+				k.add((Template) results.get(i));
 			}
 		} catch (HibernateException he) {
 			he.printStackTrace();
@@ -280,21 +368,25 @@ public class DatabaseConnector {
 	}
 
 	@SuppressWarnings({ "deprecation", "rawtypes", "finally" })
+<<<<<<< HEAD
 	public static List<Kursvorlage> vorlage(int kurs_nr) {
+=======
+	public static List<Template> vorlage(int kurs_nr) {
+>>>>>>> 077f3163d6f38b8e5af7d5206847a2b6d9a4cdf0
 
 		Session session = sessionFactory.openSession();
 		Transaction trans = session.beginTransaction();
-		List<Kursvorlage> k = new ArrayList<Kursvorlage>();
+		List<Template> k = new ArrayList<Template>();
 
 		try {
 			String sql = "SELECT * FROM Kursvorlage WHERE kurs_nr = '" + kurs_nr + "';";
 
 			SQLQuery query = session.createSQLQuery(sql);
-			query.addEntity(Kursvorlage.class);
+			query.addEntity(Template.class);
 
 			List results = query.list();
 			for (int i = 0; i < results.size(); i++) {
-				k.add((Kursvorlage) results.get(i));
+				k.add((Template) results.get(i));
 			}
 		} catch (HibernateException he) {
 			he.printStackTrace();

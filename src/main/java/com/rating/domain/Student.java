@@ -7,61 +7,74 @@ import javax.persistence.Id;
 @Entity(name="student")
 public class Student {
 	@Id
-	private String iz_kuerzel;
-	@Column
-	private String vorname;
-	@Column
-	private String nachname;
-	@Column
-	private int matrk_num;
-	@Column
-	private String email_adresse;
+	@Column(name="iz_kuerzel")
+	private String username;
+	@Column(name="vorname")
+	private String firstname;
+	@Column(name="nachname")
+	private String lastname;
+	@Column(name="matrk_num")
+	private int student_number;
+	@Column(name="email_adresse")
+	private String email;
 	
 	public Student() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Student(String iz_kuerzel, String vorname, String nachname, int matrk_num, String email_adresse) {
+
+	public Student(String username, String firstname, String lastname, int student_number, String email) {
 		super();
-		this.iz_kuerzel = iz_kuerzel;
-		this.vorname = vorname;
-		this.nachname = nachname;
-		this.matrk_num = matrk_num;
-		this.email_adresse = email_adresse;
+		this.username = username;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.student_number = student_number;
+		this.email = email;
 	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	public int getStudent_number() {
+		return student_number;
+	}
+
+	public void setStudent_number(int student_number) {
+		this.student_number = student_number;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	@Override
 	public String toString() {
-		return "Student [iz_kuerzel=" + iz_kuerzel + ", vorname=" + vorname + ", nachname=" + nachname + ", matrk_num="
-				+ matrk_num + ", email_adresse=" + email_adresse + "]";
-	}
-	public String getIz_kuerzel() {
-		return iz_kuerzel;
-	}
-	public void setIz_kuerzel(String iz_kuerzel) {
-		this.iz_kuerzel = iz_kuerzel;
-	}
-	public String getVorname() {
-		return vorname;
-	}
-	public void setVorname(String vorname) {
-		this.vorname = vorname;
-	}
-	public String getNachname() {
-		return nachname;
-	}
-	public void setNachname(String nachname) {
-		this.nachname = nachname;
-	}
-	public int getMatrk_num() {
-		return matrk_num;
-	}
-	public void setMatrk_num(int matrk_num) {
-		this.matrk_num = matrk_num;
-	}
-	public String getEmail_adresse() {
-		return email_adresse;
-	}
-	public void setEmail_adresse(String email_adresse) {
-		this.email_adresse = email_adresse;
+		return "Student [username=" + username + ", firstname=" + firstname + ", lastname=" + lastname
+				+ ", student_number=" + student_number + ", email=" + email + "]";
 	}
 }
