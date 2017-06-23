@@ -10,7 +10,7 @@ public class Group {
 	@Column(name="gruppen_nr")
 	private int group_nr;
 	@Column(name="bezeichnung")
-	private String description;
+	private String title;
 	@Column(name="kurs_nr")
 	private int course_nr;
 	
@@ -18,10 +18,10 @@ public class Group {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Group(int group_nr, String description, int course_nr) {
+	public Group(int group_nr, String title, int course_nr) {
 		super();
 		this.group_nr = group_nr;
-		this.description = description;
+		this.title = title;
 		this.course_nr = course_nr;
 	}
 	public int getGroup_nr() {
@@ -30,11 +30,11 @@ public class Group {
 	public void setGroup_nr(int group_nr) {
 		this.group_nr = group_nr;
 	}
-	public String getDescription() {
-		return description;
+	public String getTitle() {
+		return title;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	public int getCourse_nr() {
 		return course_nr;
@@ -44,6 +44,6 @@ public class Group {
 	}
 	@Override
 	public String toString() {
-		return "Group [groupn_nr=" + group_nr + ", description=" + description + ", course_nr=" + course_nr + "]";
+		return "Group [groupn_nr=" + group_nr + ", title=" + title + ", course_nr=" + course_nr + "]";
 	}
 }
