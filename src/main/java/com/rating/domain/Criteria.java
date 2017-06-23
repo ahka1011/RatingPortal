@@ -8,7 +8,7 @@ import javax.persistence.Id;
 public class Criteria {
 	@Id
 	@Column(name="bezeichnung")
-	private String description;
+	private String title;
 	@Column(name="gewichtung")
 	private double weighting;
 	@Column(name="gruppen_nr")
@@ -18,17 +18,17 @@ public class Criteria {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Criteria(String description, double weighting, int group_nr) {
+	public Criteria(String title, double weighting, int group_nr) {
 		super();
-		this.description = description;
+		this.title = title;
 		this.weighting = weighting;
 		this.group_nr = group_nr;
 	}
-	public String getDescription() {
-		return description;
+	public String getTitle() {
+		return title;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	public double getWeighting() {
 		return weighting;
@@ -44,7 +44,7 @@ public class Criteria {
 	}
 	@Override
 	public String toString() {
-		return "Criteria [description=" + description + ", weighting=" + weighting + ", group_nr=" + group_nr
+		return "Criteria [title=" + title + ", weighting=" + weighting + ", group_nr=" + group_nr
 				+ "]";
 	}
 }
