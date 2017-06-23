@@ -3,7 +3,7 @@ package com.rating.domain;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
-@Entity(name="group_rating")
+@Entity(name="gruppen_berechnung")
 public class Group_Rating {
 	@Column(name="iz_kuerzel")
 	private String username;
