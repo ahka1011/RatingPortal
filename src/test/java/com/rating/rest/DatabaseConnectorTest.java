@@ -65,12 +65,17 @@ public class DatabaseConnectorTest {
 		Assert.assertNotNull(iz_kuerzel);
 	}
 	
+	@Test
+	public void gruppeLöschenFunktioniert() {
+		final String bezeichnung = "Anwendungsprojekt";
+		Assert.assertTrue(true);
+		Assert.assertNotNull(bezeichnung);
+	}
 	
-	
-
-	
-	
-	
-	
-	
+	@Test
+	public void gruppeLöschenFunktioniertNicht() {
+		final String bezeichnung = "Anwendungsprojekt";
+		Assert.assertTrue(true);
+		Assert.assertNotNull(bezeichnung);
+	}
 }

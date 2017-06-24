@@ -176,7 +176,7 @@ public class DatabaseConnector {
 	}
 	
 	@SuppressWarnings({ "deprecation", "rawtypes", "finally" })
-	public static boolean gruppenLÃ¶schen(String bezeichnung) {
+	public static boolean gruppenLöschen(String bezeichnung) {
 		Session session = sessionFactory.openSession();
 		Transaction trans = session.beginTransaction();
 		boolean b = false;
