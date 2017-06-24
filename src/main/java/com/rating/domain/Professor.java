@@ -66,4 +66,9 @@ public class Professor {
 		return "Professor [username=" + username + ", firstname=" + firstname + ", lastname=" + lastname + ", email="
 				+ email + "]";
 	}
+
+	public Object size() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

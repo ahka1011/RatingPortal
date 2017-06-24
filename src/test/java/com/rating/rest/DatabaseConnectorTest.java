@@ -51,6 +51,21 @@ public class DatabaseConnectorTest {
 		Assert.assertNotNull(kurs_nr);
 	}
 	
+	@Test
+	public void profInfoRichtig() {
+		final String iz_kuerzel = "stin0001";
+		assertEquals("Infos zu Prof richtig", 1, DatabaseConnector.profInfo(iz_kuerzel).size());
+		Assert.assertNotNull(iz_kuerzel);
+	}
+	
+	@Test
+	public void profInfoFalsch() {
+		final String iz_kuerzel = "abcdefg";
+		assertEquals("Infos zu Prof falsch", 0, DatabaseConnector.profInfo(iz_kuerzel).size());
+		Assert.assertNotNull(iz_kuerzel);
+	}
+	
+	
 	
 
 	
