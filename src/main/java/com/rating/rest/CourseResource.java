@@ -164,7 +164,7 @@ public class CourseResource extends BaseResource {
 		List<Student> c = null;
 		try {
 			if (isValid(token)) {
-				c = DatabaseConnector.studentenZuKursSuchen(group_nr);
+				c = DatabaseConnector.searchforStudents(group_nr);
 				return c;
 			} else {
 				return c;
