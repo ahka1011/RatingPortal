@@ -75,7 +75,7 @@ public class DatabaseConnectorTest {
 	@Test
 	public void gruppeLöschenFunktioniertNicht() {
 		final String bezeichnung = "Anwendungsprojekt";
-		Assert.assertTrue(true);
+		Assert.assertTrue(false);
 		Assert.assertNotNull(bezeichnung);
 	}
 }
