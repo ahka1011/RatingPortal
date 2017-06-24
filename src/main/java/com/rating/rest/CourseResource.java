@@ -14,8 +14,24 @@ import javax.ws.rs.Produces;
 import com.rating.domain.Template;
 import com.rating.domain.Student;
 
+/**	Die CourseResource stellt die REST-API dar.
+* @author Sakine Ayaz, Burcu Kulaksiz, Tülin Duman
+* @version 2.0 
+*/
+
 @Path("/courses")
 public class CourseResource extends BaseResource {
+	
+	/**
+	 * @author 
+	 * @param Parameterbeschreibung einer Methode
+	 * @param token
+	 * @param course_nr
+	 * @param course_title
+	 * @param semester
+	 * @param username
+	 * @return Beschreibung des Rückgabewerts einer Methode
+	 */
 	
 	@POST
 	@Produces("application/json")
