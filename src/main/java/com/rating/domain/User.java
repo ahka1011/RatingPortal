@@ -28,7 +28,7 @@ public class User {
 		this.email = email;
 		this.username = username;
 		this.role = role;
-		this.myCourses = DatabaseConnector.studentKursListeSuchen(username);
+		this.myCourses = DatabaseConnector.searchforCoursesbyUsername(username);
 		this.token = token;
 	}
 	

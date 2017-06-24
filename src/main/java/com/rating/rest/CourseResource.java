@@ -35,13 +35,13 @@ public class CourseResource extends BaseResource {
 	
 	@POST
 	@Produces("application/json")
-	@Path("/prof/createcourse")
-	public void newCourse(@HeaderParam("token") String token, @FormParam("course_nr") int course_nr,
+	@Path("/prof/createtemplate")
+	public void newTemplate(@HeaderParam("token") String token, @FormParam("course_nr") int course_nr,
 			@FormParam("course_title") String course_title, @FormParam("semester") String semester,
 			@FormParam("username") String username) {
 		try {
 			if (isValid(token)) {
-				DatabaseConnector.createCourse(course_nr, course_title, semester, username);
+				DatabaseConnector.createTemplate(course_nr, course_title, semester, username);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -56,12 +56,12 @@ public class CourseResource extends BaseResource {
 	
 	@DELETE
 	@Produces("application/json")
-	@Path("/prof/deletecourse")
-	public void deleteCourse(@HeaderParam("token") String token,
+	@Path("/prof/deletetemplate")
+	public void deleteTemplate(@HeaderParam("token") String token,
 			@FormParam("username") String username) {
 		try {
 			if (isValid(token)) {
-				DatabaseConnector.deleteCourse(username);
+				DatabaseConnector.deleteTemplate(username);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
