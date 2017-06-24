@@ -14,9 +14,9 @@ import javax.ws.rs.Produces;
 import com.rating.domain.Template;
 import com.rating.domain.Student;
 
-/**	Die CourseResource stellt die REST-API dar.
+/**	Die CourseResource stellt die REST-API dar. Hier sind die Methoden implementiert.
 * @author Sakine Ayaz, Burcu Kulaksiz, Tülin Duman
-* @version 2.0 
+* @version 24.06.2017 
 */
 
 @Path("/courses")
@@ -48,6 +48,12 @@ public class CourseResource extends BaseResource {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param token
+	 * @param username
+	 */
+	
 	@DELETE
 	@Produces("application/json")
 	@Path("/prof/deletecourse")
@@ -61,7 +67,15 @@ public class CourseResource extends BaseResource {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * 
+	 * @param token
+	 * @param title
+	 * @param weighting
+	 * @param group_nr
+	 */
+	
 	@POST
 	@Produces("application/json")
 	@Path("/prof/createcriteria")
@@ -76,6 +90,12 @@ public class CourseResource extends BaseResource {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param token
+	 * @param title
+	 */
+	
 	@POST
 	@Produces("application/json")
 	@Path("/prof/deletecriteria")
@@ -88,6 +108,14 @@ public class CourseResource extends BaseResource {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * 
+	 * @param token
+	 * @param group_nr
+	 * @param title
+	 * @param course_nr
+	 */
 	
 	@POST
 	@Produces("application/json")
@@ -102,6 +130,12 @@ public class CourseResource extends BaseResource {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param token
+	 * @param title
+	 */
+	
 	@POST
 	@Produces("application/json")
 	@Path("/prof/deletegroup")
@@ -115,6 +149,13 @@ public class CourseResource extends BaseResource {
 		}
 	}
 
+	/**
+	 * 
+	 * @param token
+	 * @param group_nr
+	 * @return
+	 */
+	
 	@GET
 	@Produces("application/json")
 	@Path("/group/{group_nr}")
@@ -133,6 +174,13 @@ public class CourseResource extends BaseResource {
 		}
 		return c;
 	}
+	
+	/**
+	 * 
+	 * @param token
+	 * @param username
+	 * @return
+	 */
 
 	@GET
 	@Produces("application/json")
@@ -153,6 +201,13 @@ public class CourseResource extends BaseResource {
 		return c;
 	}
 
+	/**
+	 * 
+	 * @param token
+	 * @param username
+	 * @return
+	 */
+	
 	@GET
 	@Produces("application/json")
 	@Path("/prof/{username}")
@@ -172,6 +227,13 @@ public class CourseResource extends BaseResource {
 		return c;
 	}
 
+	/**
+	 * 
+	 * @param token
+	 * @param course_nr
+	 * @return
+	 */
+	
 	@GET
 	@Produces("application/json")
 	@Path("/prof/template/{course_nr}")
