@@ -1,5 +1,4 @@
 C:\Users\bwpc\git\RatingPortal\src\main\java\com\rating\rest\BaseResource.java
-C:\Users\bwpc\git\RatingPortal\src\main\java\com\rating\domain\Kursvorlage.java
 C:\Users\bwpc\git\RatingPortal\src\main\java\com\rating\domain\Student.java
 C:\Users\bwpc\git\RatingPortal\src\main\java\com\rating\domain\Group_Assignment.java
 C:\Users\bwpc\git\RatingPortal\src\main\java\com\rating\domain\Group.java
@@ -7,7 +6,6 @@ C:\Users\bwpc\git\RatingPortal\src\main\java\com\rating\domain\Professor.java
 C:\Users\bwpc\git\RatingPortal\src\main\java\com\rating\domain\Course.java
 C:\Users\bwpc\git\RatingPortal\src\main\java\com\rating\domain\Token.java
 C:\Users\bwpc\git\RatingPortal\src\main\java\com\rating\domain\Individual_Rating.java
-C:\Users\bwpc\git\RatingPortal\src\main\java\com\rating\domain\Kurse.java
 C:\Users\bwpc\git\RatingPortal\src\main\java\com\rating\domain\Criteria.java
 C:\Users\bwpc\git\RatingPortal\src\main\java\com\rating\domain\Pwd.java
 C:\Users\bwpc\git\RatingPortal\src\main\java\com\rating\rest\SessionResource.java

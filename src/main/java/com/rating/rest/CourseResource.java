@@ -15,7 +15,7 @@ import com.rating.domain.Template;
 import com.rating.domain.Student;
 
 /**	Die CourseResource stellt die REST-API dar. Hier sind die Methoden implementiert.
-* @author Sakine Ayaz, Burcu Kulaksiz, Tülin Duman
+* @author Sakine Ayaz, Burcu Kulaksiz, Tuelin Duman
 * @version 24.06.2017 
 */
 
@@ -24,13 +24,11 @@ public class CourseResource extends BaseResource {
 	
 	/**
 	 * @author 
-	 * @param Parameterbeschreibung einer Methode
 	 * @param token
 	 * @param course_nr
 	 * @param course_title
 	 * @param semester
 	 * @param username
-	 * @return Beschreibung des Rückgabewerts einer Methode
 	 */
 	
 	@POST
