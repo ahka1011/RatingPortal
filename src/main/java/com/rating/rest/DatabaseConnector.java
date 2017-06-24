@@ -53,7 +53,7 @@ public class DatabaseConnector {
     */
     
     @SuppressWarnings({ "deprecation", "rawtypes", "finally" })
-    public static boolean createTemplate(int course_nr, String course_title, String semester, String username) {
+    public static boolean createCourse(int course_nr, String course_title, String semester, String username) {
         Session session = sessionFactory.openSession();
         Transaction trans = session.beginTransaction();
         boolean b = false;
@@ -77,7 +77,7 @@ public class DatabaseConnector {
     }
     
     @SuppressWarnings({ "deprecation", "rawtypes", "finally" })
-    public static boolean deleteTemplate(String username) {
+    public static boolean deleteCourse(String username) {
         Session session = sessionFactory.openSession();
         Transaction trans = session.beginTransaction();
         boolean b = false;

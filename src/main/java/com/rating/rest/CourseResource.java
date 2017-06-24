@@ -41,7 +41,7 @@ public class CourseResource extends BaseResource {
 			@FormParam("username") String username) {
 		try {
 			if (isValid(token)) {
-				DatabaseConnector.kursAnlegen(course_nr, course_title, semester, username);
+				DatabaseConnector.createCourse(course_nr, course_title, semester, username);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -61,7 +61,7 @@ public class CourseResource extends BaseResource {
 			@FormParam("username") String username) {
 		try {
 			if (isValid(token)) {
-				DatabaseConnector.kursLöschen(username);
+				DatabaseConnector.deleteCourse(username);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -83,7 +83,7 @@ public class CourseResource extends BaseResource {
 			@FormParam("weighting") double weighting, @FormParam("group_nr") int group_nr) {
 		try {
 			if (isValid(token)) {
-				DatabaseConnector.kriteriumAnlegen(title, weighting, group_nr);
+				DatabaseConnector.createCriteria(title, weighting, group_nr);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -102,7 +102,7 @@ public class CourseResource extends BaseResource {
 	public void deleteCriteria(@HeaderParam("token") String token, @FormParam("title") String title) {
 		try {
 			if (isValid(token)) {
-				DatabaseConnector.kriteriumLöschen(title);
+				DatabaseConnector.deleteCriteria(title);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -123,7 +123,7 @@ public class CourseResource extends BaseResource {
 	public void newGroup(@HeaderParam("token") String token, @FormParam("group_nr") int group_nr, @FormParam("title") String title, @FormParam("course_nr") int course_nr) {
 		try {
 			if (isValid(token)) {
-				DatabaseConnector.gruppenAnlegen(group_nr, title, course_nr);
+				DatabaseConnector.createGroup(group_nr, title, course_nr);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -142,7 +142,7 @@ public class CourseResource extends BaseResource {
 	public void deleteGroup(@HeaderParam("token") String token, @FormParam("title") String title) {
 		try {
 			if (isValid(token)) {
-				DatabaseConnector.gruppenLöschen(title);
+				DatabaseConnector.deleteGroup(title);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -190,7 +190,7 @@ public class CourseResource extends BaseResource {
 		List<Template> c = null;
 		try {
 			if (isValid(token)) {
-				c = DatabaseConnector.studentKursListeSuchen(username);
+				c = DatabaseConnector.searchforCoursesbyUsername(username);
 				return c;
 			} else {
 				return c;
@@ -216,7 +216,7 @@ public class CourseResource extends BaseResource {
 		List<Template> c = null;
 		try {
 			if (isValid(token)) {
-				c = DatabaseConnector.dozentKursListeSuchen(username);
+				c = DatabaseConnector.searchforCoursesbyProf(username);
 				return c;
 			} else {
 				return c;
@@ -241,7 +241,7 @@ public class CourseResource extends BaseResource {
 		List<Template> c = null;
 		try {
 			if (isValid(token)) {
-				c = DatabaseConnector.vorlage(course_nr);
+				c = DatabaseConnector.template(course_nr);
 				return c;
 			} else {
 				return c;
