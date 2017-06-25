@@ -72,11 +72,11 @@ public class User {
 		this.role = role;
 	}
 
-	public List<Template> getMyCourses() {
+	public List<Course> getMyCourses() {
 		return myCourses;
 	}
 
-	public void setMyCourses(List<Template> myCourses) {
+	public void setMyCourses(List<Course> myCourses) {
 		this.myCourses = myCourses;
 	}
 
