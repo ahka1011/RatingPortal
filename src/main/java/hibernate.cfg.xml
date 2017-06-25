@@ -7,9 +7,13 @@
 
 <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
 
+<<<<<<< HEAD
 <property name="hibernate.connection.password">karlsruhe1</property>
+=======
+<property name="hibernate.connection.password">Mannheim1</property>
+>>>>>>> refs/remotes/origin/master
 
-<property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/postgres</property>
+<property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/ratingp</property>
 
 <property name="hibernate.connection.username">postgres</property>
 

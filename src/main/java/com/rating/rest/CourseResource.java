@@ -31,6 +31,7 @@ public class CourseResource extends BaseResource {
 	 * @param username
 	 */
 	
+	/* Professor can create a new template for his course*/
 	@POST
 	@Produces("application/json")
 	@Path("/prof/createtemplate")
@@ -52,6 +53,7 @@ public class CourseResource extends BaseResource {
 	 * @param username
 	 */
 	
+	/*Professor can delete a template*/
 	@DELETE
 	@Produces("application/json")
 	@Path("/prof/deletetemplate")
@@ -66,6 +68,90 @@ public class CourseResource extends BaseResource {
 		}
 	}
 	
+	/*Get the information from all created templates*/
+	@GET
+	@Produces("application/json")
+	@Path("/prof/template/{course_nr}")
+	public List<Template> getTemplate(@HeaderParam("token") String token, @PathParam("course_nr") int course_nr) {
+		List<Template> c = null;
+		try {
+			if (isValid(token)) {
+				c = DatabaseConnector.template(course_nr);
+				return c;
+			} else {
+				return c;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return c;
+	}
+	
+	/**
+	 * @author 
+	 * @param token
+	 * @param course_nr
+	 * @param course_title
+	 * @param semester
+	 * @param username
+	 */
+	
+	/* Professor can create a new course*/
+	@POST
+	@Produces("application/json")
+	@Path("/prof/createcourse")
+	public void newCourse(@HeaderParam("token") String token, @FormParam("course_nr") int course_nr,
+			@FormParam("course_title") String course_title, @FormParam("semester") String semester,
+			@FormParam("username") String username) {
+		try {
+			if (isValid(token)) {
+				DatabaseConnector.createCourse(course_nr, course_title, semester, username);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 
+	 * @param token
+	 * @param username
+	 */
+	
+	/*Professor can delete a course*/
+	@DELETE
+	@Produces("application/json")
+	@Path("/prof/deletecourse")
+	public void deleteCourse(@HeaderParam("token") String token,
+			@FormParam("username") String username) {
+		try {
+			if (isValid(token)) {
+				DatabaseConnector.deleteCourse(username);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/*Get the information from all created courses*/
+	@GET
+	@Produces("application/json")
+	@Path("/prof/course/{course_nr}")
+	public List<Template> getCourse(@HeaderParam("token") String token, @PathParam("course_nr") int course_nr) {
+		List<Template> c = null;
+		try {
+			if (isValid(token)) {
+				c = DatabaseConnector.course(course_nr);
+				return c;
+			} else {
+				return c;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return c;
+	}
+	
 	/**
 	 * 
 	 * @param token
@@ -74,6 +160,7 @@ public class CourseResource extends BaseResource {
 	 * @param group_nr
 	 */
 	
+	/*Professor can create new criteria*/
 	@POST
 	@Produces("application/json")
 	@Path("/prof/createcriteria")
@@ -94,7 +181,8 @@ public class CourseResource extends BaseResource {
 	 * @param title
 	 */
 	
-	@POST
+	/*Professor can delete a criteria*/
+	@DELETE
 	@Produces("application/json")
 	@Path("/prof/deletecriteria")
 	public void deleteCriteria(@HeaderParam("token") String token, @FormParam("title") String title) {
@@ -115,6 +203,7 @@ public class CourseResource extends BaseResource {
 	 * @param course_nr
 	 */
 	
+	/*Professor can create a new group*/
 	@POST
 	@Produces("application/json")
 	@Path("/prof/creategroup")
@@ -134,7 +223,8 @@ public class CourseResource extends BaseResource {
 	 * @param title
 	 */
 	
-	@POST
+	/*Professor can delete an existing group*/
+	@DELETE
 	@Produces("application/json")
 	@Path("/prof/deletegroup")
 	public void deleteGroup(@HeaderParam("token") String token, @FormParam("title") String title) {
@@ -154,6 +244,7 @@ public class CourseResource extends BaseResource {
 	 * @return
 	 */
 	
+	/*Professor can get all student informations from a group*/
 	@GET
 	@Produces("application/json")
 	@Path("/group/{group_nr}")
@@ -179,7 +270,8 @@ public class CourseResource extends BaseResource {
 	 * @param username
 	 * @return
 	 */
-
+    
+	/*Student can get a list of his joined courses*/
 	@GET
 	@Produces("application/json")
 	@Path("/student/{username}")
@@ -206,6 +298,7 @@ public class CourseResource extends BaseResource {
 	 * @return
 	 */
 	
+	/*Professor can get a list of his courses*/
 	@GET
 	@Produces("application/json")
 	@Path("/prof/{username}")
@@ -215,31 +308,6 @@ public class CourseResource extends BaseResource {
 		try {
 			if (isValid(token)) {
 				c = DatabaseConnector.searchforCoursesbyProf(username);
-				return c;
-			} else {
-				return c;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return c;
-	}
-
-	/**
-	 * 
-	 * @param token
-	 * @param course_nr
-	 * @return
-	 */
-	
-	@GET
-	@Produces("application/json")
-	@Path("/prof/template/{course_nr}")
-	public List<Template> getTemplate(@HeaderParam("token") String token, @PathParam("course_nr") int course_nr) {
-		List<Template> c = null;
-		try {
-			if (isValid(token)) {
-				c = DatabaseConnector.template(course_nr);
 				return c;
 			} else {
 				return c;

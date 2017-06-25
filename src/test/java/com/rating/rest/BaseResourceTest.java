@@ -1,4 +1,4 @@
-package com.rating.rest;
+/*package com.rating.rest;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -21,4 +21,4 @@ public class BaseResourceTest {
 		Assert.assertTrue(response);
 	}
 
-}
+}*/
