@@ -1,4 +1,4 @@
-package com.rating.rest;
+/*package com.rating.rest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,12 +40,13 @@ public class CourseResourceTest {
 		List<Student> expected = new ArrayList<Student>();
 		Student student = new Student("ahka1011", 
 				"kaleem", "ahmed", 44525, "kaleem_ahmed95@live.de");
-		System.out.println(student.getIz_kuerzel());
-		System.out.println(student.getNachname());
-		System.out.println(student.getVorname());
+		System.out.println(student.getUsername());
+		System.out.println(student.getFirstname());
+		System.out.println(student.getLastname());
 		expected.add(student);
 		Assert.assertNotNull(students);
 		Assert.assertEquals(expected, students);
 	}
 	
 }
+*/
