@@ -13,7 +13,7 @@ public class User {
 	private String role;
 	public static final String STUDENT = "Student";
 	public static final String PROFESSOR = "Professor";
-	List<Template> myCourses;
+	List<Course> myCourses;
 	private Token token;
 	
 	public User() {
