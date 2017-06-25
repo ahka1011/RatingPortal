@@ -50,18 +50,18 @@ public class CourseResource extends BaseResource {
 	/**
 	 * 
 	 * @param token
-	 * @param username
+	 * @param course_nr
 	 */
 	
 	/*Professor can delete a template*/
 	@DELETE
 	@Produces("application/json")
-	@Path("/prof/deletetemplate")
+	@Path("/prof/deletetemplate/{course_nr}")
 	public void deleteTemplate(@HeaderParam("token") String token,
-			@FormParam("username") String username) {
+			@PathParam("course_nr") int course_nr) {
 		try {
 			if (isValid(token)) {
-				DatabaseConnector.deleteTemplate(username);
+				DatabaseConnector.deleteTemplate(course_nr);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -121,12 +121,12 @@ public class CourseResource extends BaseResource {
 	/*Professor can delete a course*/
 	@DELETE
 	@Produces("application/json")
-	@Path("/prof/deletecourse")
+	@Path("/prof/deletecourse/{course_nr}")
 	public void deleteCourse(@HeaderParam("token") String token,
-			@FormParam("username") String username) {
+			@PathParam("course_nr") int course_nr) {
 		try {
 			if (isValid(token)) {
-				DatabaseConnector.deleteCourse(username);
+				DatabaseConnector.deleteCourse(course_nr);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

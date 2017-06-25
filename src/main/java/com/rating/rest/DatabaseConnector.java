@@ -77,12 +77,12 @@ public class DatabaseConnector {
     }
     
     @SuppressWarnings({ "deprecation", "rawtypes", "finally" })
-    public static boolean deleteTemplate(String username) {
+    public static boolean deleteTemplate(int course_nr) {
         Session session = sessionFactory.openSession();
         Transaction trans = session.beginTransaction();
         boolean b = false;
         try {
-            String sql = "Delete from kursvorlage where iz_kuerzel = '" + username + "';";
+            String sql = "Delete from kursvorlage where kurs_nr = '" + course_nr + "';";
             SQLQuery query = session.createSQLQuery(sql);
             query.executeUpdate();
             session.getTransaction().commit();
@@ -147,12 +147,12 @@ public class DatabaseConnector {
     }
     
     @SuppressWarnings({ "deprecation", "rawtypes", "finally" })
-    public static boolean deleteCourse(String username) {
+    public static boolean deleteCourse(int course_nr) {
         Session session = sessionFactory.openSession();
         Transaction trans = session.beginTransaction();
         boolean b = false;
         try {
-            String sql = "Delete from KURSE where iz_kuerzel = '" + username + "';";
+            String sql = "Delete from KURSE where kurs_nr = '" + course_nr + "';";
             SQLQuery query = session.createSQLQuery(sql);
             query.executeUpdate();
             session.getTransaction().commit();
