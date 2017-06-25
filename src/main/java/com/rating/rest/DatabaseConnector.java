@@ -64,8 +64,8 @@ public class DatabaseConnector {
             SQLQuery query = session.createSQLQuery(sql);
             query.executeUpdate();
             session.getTransaction().commit();
-            session.flush();
             b = true;
+            session.flush();
         }
         catch (HibernateException he) {
             he.printStackTrace();
@@ -87,8 +87,8 @@ public class DatabaseConnector {
             SQLQuery query = session.createSQLQuery(sql);
             query.executeUpdate();
             session.getTransaction().commit();
-            session.flush();
             b = true;
+            session.flush(); 
         }
         catch (HibernateException he) {
             he.printStackTrace();
