@@ -11,6 +11,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
+import com.rating.domain.Course;
 import com.rating.domain.Template;
 import com.rating.domain.Student;
 
@@ -275,9 +276,9 @@ public class CourseResource extends BaseResource {
 	@GET
 	@Produces("application/json")
 	@Path("/student/{username}")
-	public List<Template> getCoursesOfStudent(@HeaderParam("token") String token,
+	public List<Course> getCoursesOfStudent(@HeaderParam("token") String token,
 			@PathParam("username") String username) {
-		List<Template> c = null;
+		List<Course> c = null;
 		try {
 			if (isValid(token)) {
 				c = DatabaseConnector.searchforCoursesbyUsername(username);
@@ -302,9 +303,9 @@ public class CourseResource extends BaseResource {
 	@GET
 	@Produces("application/json")
 	@Path("/prof/{username}")
-	public List<Template> getCoursesOfProfessor(@HeaderParam("token") String token,
+	public List<Course> getCoursesOfProfessor(@HeaderParam("token") String token,
 			@PathParam("username") String username) {
-		List<Template> c = null;
+		List<Course> c = null;
 		try {
 			if (isValid(token)) {
 				c = DatabaseConnector.searchforCoursesbyProf(username);

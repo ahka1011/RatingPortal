@@ -25,6 +25,7 @@ public class DatabaseConnector {
         builder.applySettings(config.getProperties());
         MetadataSources metadataSources = new MetadataSources();
         metadataSources.addAnnotatedClass(Template.class);
+        metadataSources.addAnnotatedClass(Course.class);
         metadataSources.addAnnotatedClass(Professor.class);
         metadataSources.addAnnotatedClass(Student.class);
         Metadata metadata = metadataSources.buildMetadata(builder.build());
@@ -287,18 +288,18 @@ public class DatabaseConnector {
         }
     }
     @SuppressWarnings({ "deprecation", "rawtypes", "finally" })
-    public static List<Template> searchforCoursesbyUsername(String username) {
+    public static List<Course> searchforCoursesbyUsername(String username) {
         Session session = sessionFactory.openSession();
         Transaction trans = session.beginTransaction();
-        List<Template> k = new ArrayList<Template>();
+        List<Course> k = new ArrayList<Course>();
         try {
-            String sql = "SELECT kursvorlage.kurs_nr, kursvorlage.bezeichnung_kurs, kursvorlage.semester_kurs, Kursvorlage.iz_kuerzel  FROM  kursvorlage join belegung_einzeln on belegung_einzeln.bezeichnung_kurs = kursvorlage.bezeichnung_kurs  WHERE belegung_einzeln.iz_kuerzel = '"
+            String sql = "SELECT kurse.kurs_nr, kurse.bezeichnung_kurs, kurse.semester_kurs, kurse.iz_kuerzel  FROM  kurse join belegung_einzeln on belegung_einzeln.bezeichnung_kurs = kurse.bezeichnung_kurs  WHERE belegung_einzeln.iz_kuerzel = '"
                     + username + "';";
             SQLQuery query = session.createSQLQuery(sql);
-            query.addEntity(Template.class);
+            query.addEntity(Course.class);
             List results = query.list();
             for (int i = 0; i < results.size(); i++) {
-                k.add((Template) results.get(i));
+                k.add((Course) results.get(i));
             }
         } catch (HibernateException he) {
             he.printStackTrace();
@@ -310,17 +311,17 @@ public class DatabaseConnector {
         }
     }
     @SuppressWarnings({ "deprecation", "rawtypes", "finally" })
-    public static List<Template> searchforCoursesbyProf(String username) {
+    public static List<Course> searchforCoursesbyProf(String username) {
         Session session = sessionFactory.openSession();
         Transaction trans = session.beginTransaction();
-        List<Template> k = new ArrayList<Template>();
+        List<Course> k = new ArrayList<Course>();
         try {
-            String sql = "SELECT * FROM Kursvorlage WHERE iz_kuerzel = '" + username + "';";
+            String sql = "SELECT * FROM Kurse WHERE iz_kuerzel = '" + username + "';";
             SQLQuery query = session.createSQLQuery(sql);
-            query.addEntity(Template.class);
+            query.addEntity(Course.class);
             List results = query.list();
             for (int i = 0; i < results.size(); i++) {
-                k.add((Template) results.get(i));
+                k.add((Course) results.get(i));
             }
         } catch (HibernateException he) {
             he.printStackTrace();
