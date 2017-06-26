@@ -16,6 +16,12 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.query.NativeQuery;
 import com.rating.domain.*;
 
+/**
+ * Initialisieren was macht diese Klasse?
+ * @author Kaleem, Son, Tolga
+ *
+ */
+
 public class DatabaseConnector {
     static SessionFactory sessionFactory = null;
     static {
@@ -52,6 +58,14 @@ public class DatabaseConnector {
         }
     }
     */
+    /**
+     * 
+     * @param course_nr
+     * @param course_title
+     * @param semester
+     * @param username
+     * @return
+     */
     
     @SuppressWarnings({ "deprecation", "rawtypes", "finally" })
     public static boolean createTemplate(int course_nr, String course_title, String semester, String username) {
@@ -76,6 +90,11 @@ public class DatabaseConnector {
             return b;
         }
     }
+    /**
+     * 
+     * @param course_nr
+     * @return
+     */
     
     @SuppressWarnings({ "deprecation", "rawtypes", "finally" })
     public static boolean deleteTemplate(int course_nr) {
