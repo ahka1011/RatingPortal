@@ -90,11 +90,11 @@ public class CourseResource extends BaseResource {
 	
 	/** In dieser Methode wir ein neuer Kurs von einem Dozenten angelegt.
 	 * @author Tülin Duman
-	 * @param token
-	 * @param course_nr
-	 * @param course_title
-	 * @param semester
-	 * @param username
+	 * @param token es wird überprüft ob der Token valide ist bevor die Methode ausgeführt wird
+	 * @param course_nr Kursnummer ist die ID, jeder Kurs hat eine eindeutige Kursnummer
+	 * @param course_title der Kurs hat eine Bezeichnung
+	 * @param semester hier das Semester des Kurses angegeben
+	 * @param username IZ-Kuerzel des Studenten
 	 */
 	
 	/* Professor can create a new course*/
@@ -115,8 +115,8 @@ public class CourseResource extends BaseResource {
 	
 	/** In dieser Methode wird ein Kurs von einem Dozenten gelöscht
 	 * @autor Tülin Duman
-	 * @param token
-	 * @param username
+	 * @param token es wird überprüft ob der Token valide ist bevor die Methode ausgeführt wird
+	 * @param username IZ-Kuerzel des Studenten
 	 */
 	
 	/*Professor can delete a course*/
@@ -136,8 +136,8 @@ public class CourseResource extends BaseResource {
 	
 	/**In dieser Methode wird ein Kurs von einem Dozenten aufgerufen.
 	 * @author Tülin Duman
-	 * @param token
-	 * @param course_nr
+	 * @param token es wird überprüft ob der Token valide ist bevor die Methode ausgeführt wird
+	 * @param course_nr Kursnummer ist die ID, jeder Kurs hat eine eindeutige Kursnummer
 	 * @return
 	 */
 	/*Get the information from all created courses*/
@@ -298,11 +298,11 @@ public class CourseResource extends BaseResource {
 		return c;
 	}
 
-	/**
-	 * 
-	 * @param token
-	 * @param username
-	 * @return
+	/** Der Dozent kann eine Liste von seinen Kursen aufrufen
+	 * @author Tülin Duman
+	 * @param token es wird überprüft ob der Token valide ist bevor die Methode ausgeführt wird
+	 * @param username IZ-Kuerzel des Studenten
+	 * @return es wird eine Liste von Kursen zurück gegeben
 	 */
 	
 	/*Professor can get a list of his courses*/
