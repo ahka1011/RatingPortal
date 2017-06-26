@@ -88,8 +88,8 @@ public class CourseResource extends BaseResource {
 		return c;
 	}
 	
-	/**
-	 * @author 
+	/** In dieser Methode wir ein neuer Kurs von einem Dozenten angelegt.
+	 * @author Tülin Duman
 	 * @param token
 	 * @param course_nr
 	 * @param course_title
@@ -113,8 +113,8 @@ public class CourseResource extends BaseResource {
 		}
 	}
 	
-	/**
-	 * 
+	/** In dieser Methode wird ein Kurs von einem Dozenten gelöscht
+	 * @autor Tülin Duman
 	 * @param token
 	 * @param username
 	 */
@@ -134,6 +134,12 @@ public class CourseResource extends BaseResource {
 		}
 	}
 	
+	/**In dieser Methode wird ein Kurs von einem Dozenten aufgerufen.
+	 * @author Tülin Duman
+	 * @param token
+	 * @param course_nr
+	 * @return
+	 */
 	/*Get the information from all created courses*/
 	@GET
 	@Produces("application/json")
