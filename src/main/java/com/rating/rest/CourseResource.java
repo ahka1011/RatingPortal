@@ -95,7 +95,7 @@ public class CourseResource extends BaseResource {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return c;
+		return t;
 	}
 	
 	/** 
@@ -105,7 +105,7 @@ public class CourseResource extends BaseResource {
 	 * @param course_nr is the ID of a course, every course has a unique number
 	 * @param course_title the name of the course
 	 * @param semester explains in which semester the course is offered
-	 * @param username user ID of the student
+	 * @param username user ID for the login
 	 */
 	
 	@POST
@@ -316,7 +316,7 @@ public class CourseResource extends BaseResource {
 	}
 
 	/** Professor can get a list of his courses.
-	 * @author Tülin Duman
+	 * @author Tuelin Duman
 	 * @param token checks if the token is valid before executing the method
 	 * @param username user ID of the student
 	 * @return a list of courses

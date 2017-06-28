@@ -3,6 +3,14 @@ package com.rating.domain;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
+/**
+ * Represents a student who is a course.
+ * The student will be evaluated by a professor.
+ * 
+ * @author Kaleem Ahmed
+ *
+ */
+
 @Entity(name = "belegung_einzeln")
 public class Single_Assignment {
 	@Column(name="iz_kuerzel")
@@ -22,6 +30,17 @@ public class Single_Assignment {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	/**
+	 * Class constructor.
+	 * 
+	 * @param username is user ID of a student
+	 * @param student_number is the unique personified ID of a student
+	 * @param course_title title of the course
+	 * @param semester is the semester in which the course is held
+	 * @param criteria is the criteria for the single assignment
+	 * @param individual_mark is the individual mark of a student
+	 */
 
 	public Single_Assignment(String username, int student_number, String course_title, String semester, String criteria,
 			double individual_mark) {

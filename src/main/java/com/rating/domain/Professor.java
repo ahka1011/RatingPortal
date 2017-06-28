@@ -4,6 +4,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+/**
+ * Represents the role of the professor.
+ * @author Tolga Duman
+ *
+ */
+
 @Entity(name="professor")
 public class Professor {
 	@Id
@@ -20,7 +26,15 @@ public class Professor {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+    
+	/**
+	 * Class constructor. 
+	 * @param username is the unique personified ID of a professor
+	 * @param firstname is the firstname of a professor
+	 * @param lastname is the lastname of a professor
+	 * @param email is the email of a professor
+	 */
+	
 	public Professor(String username, String firstname, String lastname, String email) {
 		super();
 		this.username = username;

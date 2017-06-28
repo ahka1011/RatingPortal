@@ -4,6 +4,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+/**
+ * Represents a group which is created by a professor.
+ * 
+ * @author Kaleem Ahmed
+ *
+ */
+
 @Entity(name="gruppe")
 public class Group {
 	@Id
@@ -18,6 +25,15 @@ public class Group {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	/**
+	 * Class constructor
+	 * 
+	 * @param group_nr is the number of the group
+	 * @param title is the title of the group
+	 * @param course_nr is the number of the course
+	 */
+	
 	public Group(int group_nr, String title, int course_nr) {
 		super();
 		this.group_nr = group_nr;
@@ -27,21 +43,27 @@ public class Group {
 	public int getGroup_nr() {
 		return group_nr;
 	}
+	
 	public void setGroup_nr(int group_nr) {
 		this.group_nr = group_nr;
 	}
+	
 	public String getTitle() {
 		return title;
 	}
+	
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	
 	public int getCourse_nr() {
 		return course_nr;
 	}
+	
 	public void setCourse_nr(int course_nr) {
 		this.course_nr = course_nr;
 	}
+	
 	@Override
 	public String toString() {
 		return "Group [groupn_nr=" + group_nr + ", title=" + title + ", course_nr=" + course_nr + "]";

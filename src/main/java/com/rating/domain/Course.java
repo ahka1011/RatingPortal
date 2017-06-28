@@ -4,6 +4,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+/**
+ * 
+ * @author Son Hai Hoang
+ * The Domainclass "Course" maps the attented courses of students and the created courses of professors
+ *
+ */
+
 @Entity(name="kurse")
 public class Course {
 	@Id
@@ -20,7 +27,11 @@ public class Course {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+    
+	/**
+	 *Class Constuctor Course with an initialisation of the Attributes: course_nr, course_title, semester and username 
+	 */
+	
 	public Course(int course_nr, String course_title, String semester, String username) {
 		super();
 		this.course_nr = course_nr;

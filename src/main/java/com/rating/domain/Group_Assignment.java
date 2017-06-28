@@ -3,6 +3,14 @@ package com.rating.domain;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
+/**
+ * Represents a group of students who are in a course.
+ * This course will be evaluated by a professor. 
+ * 
+ * @author Kaleem Ahmed
+ *
+ */
+
 @Entity(name="belegung_gruppe")
 public class Group_Assignment {
 	@Column(name="gruppen_nr")
@@ -22,7 +30,18 @@ public class Group_Assignment {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+     
+	/**
+	 * Class constructor.
+	 * 
+	 * @param group_nr is the number of a group
+	 * @param student_number is the unique personified ID of a student
+	 * @param course_title is the title of a course
+	 * @param semester explains in which semester the course is offered 
+	 * @param course_nr is the ID of a course, every course has a unique number
+	 * @param group_mark is the mark of the whole group
+	 */
+	
 	public Group_Assignment(int group_nr, int student_number, String course_title, String semester, int course_nr,
 			double group_mark) {
 		super();

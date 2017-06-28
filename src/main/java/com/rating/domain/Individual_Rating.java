@@ -3,6 +3,14 @@ package com.rating.domain;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
+/**
+ * Represents a student who has been evaluated by a professor referring to
+ * criteria and weighting.
+ * 
+ * @author Kaleem Ahmed und Tolga Duman
+ *
+ */
+
 @Entity(name="einzel_berechnung")
 public class Individual_Rating {
 	@Column(name="bezeichnung")
@@ -23,45 +31,71 @@ public class Individual_Rating {
 	public String getTitle() {
 		return title;
 	}
+	
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	
 	public double getIndividual_Mark() {
 		return individual_mark;
 	}
+	
 	public void setIndividual_Mark(double individual_mark) {
 		this.individual_mark = individual_mark;
 	}
+	
 	public double getWeighting() {
 		return weighting;
 	}
+	
 	public void setWeighting(double weighting) {
 		this.weighting = weighting;
 	}
+	
 	public double getOverall_Mark() {
 		return overall_mark;
 	}
+	
 	public void setOverall_Mark(double overall_mark) {
 		this.overall_mark = overall_mark;
 	}
+	
 	public int getStudent_number() {
 		return student_number;
 	}
+	
 	public void setStudent_number(int student_number) {
 		this.student_number = student_number;
 	}
+	
 	public int getCourse_nr() {
 		return course_nr;
 	}
+	
 	public void setCourse_nr(int course_nr) {
 		this.course_nr = course_nr;
 	}
+	
 	public int getGroup_nr() {
 		return group_nr;
 	}
+	
 	public void setGroup_nr(int group_nr) {
 		this.group_nr = group_nr;
 	}
+	
+	/**
+	 * Class constructor.
+	 * 
+	 * @param title is the title of the course
+	 * @param individual_mark is the individual mark of a student
+	 * @param weighting is the weight of the new criteria referring to the other criteria
+	 * @param overall_mark is the mark for the whole group
+	 * @param student_number is the unique personified ID of a student
+	 * @param course_nr is the number of the course
+	 * @param group_nr is the number of a group
+	 */
+	
 	public Individual_Rating(String title, double individual_mark, double weighting, double overall_mark, int student_number,
 			int course_nr, int group_nr) {
 		super();
