@@ -91,7 +91,7 @@ public class CourseResource extends BaseResource {
 	
 	/** 
 	 * Professor can create a new course.
-	 * @author Tülin Duman
+	 * @author Tuelin Duman
 	 * @param token checks if the token is valid before executing the method
 	 * @param course_nr is the ID of a course, every course has a unique number
 	 * @param course_title the name of the course
@@ -116,9 +116,9 @@ public class CourseResource extends BaseResource {
 	
 	/**
 	 * Professor can delete a course.
-	 * @autor Tülin Duman
+	 * @author Tuelin Duman
 	 * @param token checks if the token is valid before executing the method
-	 * @param username user ID of the student
+	 * @param course_nr is the ID of a course, every course has a unique number
 	 */
 	
 	@DELETE
@@ -137,7 +137,7 @@ public class CourseResource extends BaseResource {
 	
 	/**
 	 * Get the information from all created courses.
-	 * @author Tülin Duman
+	 * @author Tuelin Duman
 	 * @param token checks if the token is valid before executing the method
 	 * @param course_nr is the ID of a course, every course has a unique number
 	 * @return
