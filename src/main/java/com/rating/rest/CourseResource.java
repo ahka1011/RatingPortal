@@ -171,14 +171,13 @@ public class CourseResource extends BaseResource {
 	}
 	
 	/**
-	 * 
-	 * @param token
-	 * @param title
-	 * @param weighting
-	 * @param group_nr
+	 * Professor can create a new criteria.
+	 * @author Sakine Ayaz
+	 * @param token unique token
+	 * @param title name of the new criteria
+	 * @param weighting weighting of the new criteria
+	 * @param group_nr number of group for the new criteria
 	 */
-	
-	/*Professor can create new criteria*/
 	@POST
 	@Produces("application/json")
 	@Path("/prof/createcriteria")
@@ -194,12 +193,11 @@ public class CourseResource extends BaseResource {
 	}
 	
 	/**
-	 * 
-	 * @param token
-	 * @param title
+	 * Professor can delete a criteria.
+	 * @author Sakine Ayaz
+	 * @param token unique token
+	 * @param title name of the criteria
 	 */
-	
-	/*Professor can delete a criteria*/
 	@DELETE
 	@Produces("application/json")
 	@Path("/prof/deletecriteria")
@@ -214,14 +212,13 @@ public class CourseResource extends BaseResource {
 	}
 	
 	/**
-	 * 
-	 * @param token
-	 * @param group_nr
-	 * @param title
-	 * @param course_nr
+	 * Professor can create a new group.
+	 * @author Sakine Ayaz
+	 * @param token unique token
+	 * @param group_nr number of new group
+	 * @param title name of the new group
+	 * @param course_nr number of course in which the new group is 
 	 */
-	
-	/*Professor can create a new group*/
 	@POST
 	@Produces("application/json")
 	@Path("/prof/creategroup")
@@ -236,12 +233,11 @@ public class CourseResource extends BaseResource {
 	}
 	
 	/**
-	 * 
-	 * @param token
-	 * @param title
+	 * Professor can delete an existing group
+	 * @author Sakine Ayaz
+	 * @param token unique token
+	 * @param title name of the group
 	 */
-	
-	/*Professor can delete an existing group*/
 	@DELETE
 	@Produces("application/json")
 	@Path("/prof/deletegroup")
@@ -256,13 +252,11 @@ public class CourseResource extends BaseResource {
 	}
 
 	/**
-	 * 
-	 * @param token
-	 * @param group_nr
-	 * @return
+	 * Professor can get all student informations from a group.
+	 * @param token unique token
+	 * @param group_nr requested number of group
+	 * @return list of students
 	 */
-	
-	/*Professor can get all student informations from a group*/
 	@GET
 	@Produces("application/json")
 	@Path("/group/{group_nr}")
@@ -281,13 +275,6 @@ public class CourseResource extends BaseResource {
 		}
 		return c;
 	}
-	
-	/**
-	 * 
-	 * @param token
-	 * @param username
-	 * @return
-	 */
     
 	/**
 	 * Student gets a list of his joined courses.
