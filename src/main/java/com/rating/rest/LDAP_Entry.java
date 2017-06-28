@@ -12,8 +12,23 @@ import java.io.UnsupportedEncodingException;
 import java.util.Base64;
 import java.util.Hashtable;
 
+/**
+ * This class is used to authenticate users.
+ * The user administration as well as the authentication, is done via LDAP.
+ * 
+ * @author Burcu Kulaksiz
+ *
+ */
 public class LDAP_Entry {
 
+	/**
+	 * Method is used to authenticate users
+	 * @param username user ID of student or professor
+	 * @param password related password
+	 * @return User object with user-related data from LDAP.
+	 * 
+	 * @see com.rating.domain.User
+	 */
 	public static User findUser(String username, String password) {
 
 		try {
@@ -86,7 +101,6 @@ public class LDAP_Entry {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return null;
 	}
 }

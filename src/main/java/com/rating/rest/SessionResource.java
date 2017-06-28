@@ -10,12 +10,28 @@ import javax.ws.rs.core.Context;
 
 import com.rating.domain.User;
 
+/**
+ * This class provides the REST API for login and logout.
+ * Inherits from {@link com.rating.rest.BaseResource}.
+ * 
+ * @author Burcu Kulaksiz
+ *
+ */
 @Path("/session")
 public class SessionResource extends BaseResource {
 
 	@Context
 	HttpServletRequest request;
 
+	/**
+	 * REST-API for login.
+	 * When authentification is successful, a session will be started and a unique token generated.
+	 * @param username user ID of student or professor
+	 * @param password related password
+	 * @return User object with user-related data from LDAP
+	 * @throws NamingException if the authentication fails
+	 * @throws UnsupportedEncodingException if the Character Encoding is not supported
+	 */
 	@POST
 	@Produces("application/json")
 	@Path("/login")
@@ -41,14 +57,27 @@ public class SessionResource extends BaseResource {
 		return usr;
 	}
 
+	/**
+	 * REST-API for logout.
+	 * Session is destroyed.
+	 * @param token unique token
+	 * @return true on successful logout
+	 */
 	@POST
 	@Produces("application/json")
 	@Path("/logout")
 	public boolean Logout(@HeaderParam("token") String token) {
-
-		token2session.remove(token);
-
+		try {
+			if (isValid(token)) {
+				HttpSession s = token2session.get(token);
+				
+				s.invalidate();
+				
+				token2session.remove(token);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return true;
 	}
-
 }
