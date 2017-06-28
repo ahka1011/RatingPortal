@@ -15,10 +15,11 @@ import com.rating.domain.Course;
 import com.rating.domain.Template;
 import com.rating.domain.Student;
 
-/**	Die CourseResource stellt die REST-API dar. Hier sind die Methoden implementiert.
-* @author Sakine Ayaz, Burcu Kulaksiz, Tuelin Duman
-* @version 24.06.2017 
-*/
+ /**	
+ * Represents the REST-API. Here the methods are implemented.
+ * @author Sakine Ayaz, Burcu Kulaksiz, Tuelin Duman
+ * @version 28.06.2017 
+ */
 
 @Path("/courses")
 public class CourseResource extends BaseResource {
@@ -88,16 +89,16 @@ public class CourseResource extends BaseResource {
 		return c;
 	}
 	
-	/** In dieser Methode wir ein neuer Kurs von einem Dozenten angelegt.
+	/** 
+	 * Professor can create a new course.
 	 * @author Tülin Duman
-	 * @param token es wird überprüft ob der Token valide ist bevor die Methode ausgeführt wird
-	 * @param course_nr Kursnummer ist die ID, jeder Kurs hat eine eindeutige Kursnummer
-	 * @param course_title der Kurs hat eine Bezeichnung
-	 * @param semester hier das Semester des Kurses angegeben
-	 * @param username IZ-Kuerzel des Studenten
+	 * @param token checks if the token is valid before executing the method
+	 * @param course_nr is the ID of a course, every course has a unique number
+	 * @param course_title the name of the course
+	 * @param semester explains in which semester the course is offered
+	 * @param username user ID of the student
 	 */
 	
-	/* Professor can create a new course*/
 	@POST
 	@Produces("application/json")
 	@Path("/prof/createcourse")
@@ -113,13 +114,13 @@ public class CourseResource extends BaseResource {
 		}
 	}
 	
-	/** In dieser Methode wird ein Kurs von einem Dozenten gelöscht
+	/**
+	 * Professor can delete a course.
 	 * @autor Tülin Duman
-	 * @param token es wird überprüft ob der Token valide ist bevor die Methode ausgeführt wird
-	 * @param username IZ-Kuerzel des Studenten
+	 * @param token checks if the token is valid before executing the method
+	 * @param username user ID of the student
 	 */
 	
-	/*Professor can delete a course*/
 	@DELETE
 	@Produces("application/json")
 	@Path("/prof/deletecourse/{course_nr}")
@@ -134,10 +135,11 @@ public class CourseResource extends BaseResource {
 		}
 	}
 	
-	/**In dieser Methode wird ein Kurs von einem Dozenten aufgerufen.
+	/**
+	 * Get the information from all created courses.
 	 * @author Tülin Duman
-	 * @param token es wird überprüft ob der Token valide ist bevor die Methode ausgeführt wird
-	 * @param course_nr Kursnummer ist die ID, jeder Kurs hat eine eindeutige Kursnummer
+	 * @param token checks if the token is valid before executing the method
+	 * @param course_nr is the ID of a course, every course has a unique number
 	 * @return
 	 */
 	/*Get the information from all created courses*/
@@ -298,14 +300,13 @@ public class CourseResource extends BaseResource {
 		return c;
 	}
 
-	/** Der Dozent kann eine Liste von seinen Kursen aufrufen
+	/** Professor can get a list of his courses.
 	 * @author Tülin Duman
-	 * @param token es wird überprüft ob der Token valide ist bevor die Methode ausgeführt wird
-	 * @param username IZ-Kuerzel des Studenten
-	 * @return es wird eine Liste von Kursen zurück gegeben
+	 * @param token checks if the token is valid before executing the method
+	 * @param username user ID of the student
+	 * @return a list of courses
 	 */
 	
-	/*Professor can get a list of his courses*/
 	@GET
 	@Produces("application/json")
 	@Path("/prof/{username}")
