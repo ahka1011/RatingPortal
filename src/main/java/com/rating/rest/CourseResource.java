@@ -16,7 +16,12 @@ import com.rating.domain.Template;
 import com.rating.domain.Student;
 
  /**	
- * Represents the REST-API. Here the methods are implemented.
+ * Represents the REST-API for course-based methods.
+ * Both student and professor view.
+ * 
+ * Inherits from {@link com.rating.rest.BaseResource}
+ * Each method checks whether the token is valid or not.
+ * 
  * @author Sakine Ayaz, Burcu Kulaksiz, Tuelin Duman
  * @version 28.06.2017 
  */
@@ -25,15 +30,14 @@ import com.rating.domain.Student;
 public class CourseResource extends BaseResource {
 	
 	/**
-	 * @author 
-	 * @param token
-	 * @param course_nr
-	 * @param course_title
-	 * @param semester
-	 * @param username
+	 * Professor can create a new template of his courses.
+	 * @author Burcu Kulaksiz
+	 * @param token unique token
+	 * @param course_nr course number for the new template
+	 * @param course_title title of the course
+	 * @param semester semester in which the course is held
+	 * @param username user ID of professor
 	 */
-	
-	/* Professor can create a new template for his course*/
 	@POST
 	@Produces("application/json")
 	@Path("/prof/createtemplate")
@@ -50,12 +54,11 @@ public class CourseResource extends BaseResource {
 	}
 	
 	/**
-	 * 
-	 * @param token
-	 * @param course_nr
+	 * Professor can delete a template.
+	 * @author Burcu Kulaksiz
+	 * @param token unique token
+	 * @param course_nr course number of the template
 	 */
-	
-	/*Professor can delete a template*/
 	@DELETE
 	@Produces("application/json")
 	@Path("/prof/deletetemplate/{course_nr}")
@@ -70,18 +73,24 @@ public class CourseResource extends BaseResource {
 		}
 	}
 	
-	/*Get the information from all created templates*/
+	/**
+	 * Professor gets information about a created course template.
+	 * @author Burcu Kulaksiz
+	 * @param token unique token
+	 * @param course_nr course number of the template
+	 * @return requested course template
+	 */
 	@GET
 	@Produces("application/json")
 	@Path("/prof/template/{course_nr}")
 	public List<Template> getTemplate(@HeaderParam("token") String token, @PathParam("course_nr") int course_nr) {
-		List<Template> c = null;
+		List<Template> t = null;
 		try {
 			if (isValid(token)) {
-				c = DatabaseConnector.template(course_nr);
-				return c;
+				t = DatabaseConnector.template(course_nr);
+				return t;
 			} else {
-				return c;
+				return t;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -280,7 +289,13 @@ public class CourseResource extends BaseResource {
 	 * @return
 	 */
     
-	/*Student can get a list of his joined courses*/
+	/**
+	 * Student gets a list of his joined courses.
+	 * @author Burcu Kulaksiz
+	 * @param token unique token
+	 * @param username user ID of student
+	 * @return courses taken by a student
+	 */
 	@GET
 	@Produces("application/json")
 	@Path("/student/{username}")
