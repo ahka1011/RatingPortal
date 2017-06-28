@@ -222,7 +222,8 @@ public class CourseResource extends BaseResource {
 	@POST
 	@Produces("application/json")
 	@Path("/prof/creategroup")
-	public void newGroup(@HeaderParam("token") String token, @FormParam("group_nr") int group_nr, @FormParam("title") String title, @FormParam("course_nr") int course_nr) {
+	public void newGroup(@HeaderParam("token") String token, @FormParam("group_nr") int group_nr, 
+			@FormParam("title") String title, @FormParam("course_nr") int course_nr) {
 		try {
 			if (isValid(token)) {
 				DatabaseConnector.createGroup(group_nr, title, course_nr);
@@ -253,6 +254,7 @@ public class CourseResource extends BaseResource {
 
 	/**
 	 * Professor can get all student informations from a group.
+	 * @author Sakine Ayaz
 	 * @param token unique token
 	 * @param group_nr requested number of group
 	 * @return list of students
