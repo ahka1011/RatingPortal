@@ -4,6 +4,16 @@ import java.util.List;
 
 import com.rating.rest.DatabaseConnector;
 
+/**
+ * Represents and describes a user.
+ * Authentication of user in {@link com.rating.rest.LDAP_Entry#findUser(String, String)}.
+ * When authentication is successful, attributes will be filled with user-related data from LDAP.
+ * 
+ * @see com.rating.rest.LDAP_Entry
+ * 
+ * @author Burcu Kulaksiz
+ *
+ */
 public class User {
 
 	private String firstname;
