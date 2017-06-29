@@ -189,7 +189,8 @@ public class CourseResourceTest {
 		}
 	}
     
-	//Test which should show all the courses of a logged student
+	//Test which should show all the courses of a logged student.
+	//If there is a course for the student then the test ist successful.
 	@Test
 	public void coursesOfStudentIsThere() {
 		final String username_student_working = "stud1111";
@@ -197,7 +198,8 @@ public class CourseResourceTest {
 				courseResource.getCoursesOfStudent("abcd1234", username_student_working).size());
 	}
     
-	//Test which should not show any course of a logged student
+	//Test which should not show any course of a logged student.
+	//If there is no course for the student then the test is successful.
 	@Test
 	public void coursesOfStudentIsNotThere() {
 		final String username_student_not_working = "abcd1234";
@@ -205,7 +207,8 @@ public class CourseResourceTest {
 				courseResource.getCoursesOfStudent("asdfadsfasdf", username_student_not_working).size());
 	}
     
-	//Test which should show all the courses of a logged professor
+	//Test which should show all the courses of a logged professor.
+	//If there is a course for the professor then the test is successful.
 	@Test
 	public void coursesOfProfessorIsThere() {
 		final String username_prof_working = "prof1111";
@@ -213,23 +216,40 @@ public class CourseResourceTest {
 				courseResource.getCoursesOfProfessor("abcd1234", username_prof_working).size());
 	}
     
-	//Test which should not show any course of a logged professor
+	//Test which should not show any course of a logged professor.
+	//If there is no course for the professor then the test is successful.
 	@Test
-	public void dozentKursListeSuchenNichtDa() {
+	public void coursesOfProfessorIsNotThere() {
 		final String username_prof_not_working = "abcd1234";
-		assertEquals("Kurse vom Studenten sollte nicht da sein", 0,
+		assertEquals("Kurse vom Professor sollte nicht da sein", 0,
 				courseResource.getCoursesOfProfessor("abcdefgh", username_prof_not_working).size());
-
 	}
 
+	//Test which should show all the templates of a logged professor.
+	//If there is a template for the professor then the test is successful.
 	@Test
-	public void testGetTemplate() {
-		assertEquals("Test get template", 1, courseResource.getTemplate("asfdfasdfadsf", 10000).size());
+	public void getTemplateForProfessor() {
+		assertEquals("Kursvorlage für Professor sollte da sein", 1, courseResource.getTemplate("asfdfasdfadsf", 10000).size());
 	}
-
+	
+	//Test which should not show any template of a logged professor.
+	//If there is no template for the professor then the test is successful.
 	@Test
-	public void testGetCourse() {
-		assertEquals("Test get Course", 1, courseResource.getCourse("sdafasdfasdf", 10000).size());
+	public void noTemplateForProfessor() {
+		assertEquals("Kursvorlage für Professor sollte nicht da sein", 0, courseResource.getTemplate("abcd1234", 10005).size());
 	}
-
+    
+	//Test which should show all the courses of a logged professor.
+	//If there is a course for the student then the test is successful.
+	@Test
+	public void getCertainCourseNrOfProfessor() {
+		assertEquals("Kursnummer 10000 des Professors sollte da sein", 1, courseResource.getCourse("abcd1234", 10000).size());
+	}
+	
+	//Test which should not show any course of a logged professor.
+	//If there is no course for the student then the test is successful.
+	@Test
+	public void noCertainCourseNrOfProfessor() {
+		assertEquals("Kursnummer 10005 des Professor sollte nicht da sein", 0, courseResource.getCourse("abcd1234", 10005).size());
+	}
 }
