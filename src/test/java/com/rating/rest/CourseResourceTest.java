@@ -190,7 +190,7 @@ public class CourseResourceTest {
 	}
     
 	//Test which should show all the courses of a logged student.
-	//If there is a course for the student then the test ist successful.
+	//If there is a course for the student then the test is successful.
 	@Test
 	public void coursesOfStudentIsThere() {
 		final String username_student_working = "stud1111";

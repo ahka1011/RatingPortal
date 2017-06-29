@@ -113,24 +113,23 @@ public class DatabaseConnectorTest {
 			transaction.rollback();
 		}
 
-		// kurs dummy
+		//Inserting and deleting dummy course data
 		try {
 			final Session session1 = sessionFactory.openSession();
 			transaction = session1.beginTransaction();
 
-			// delete prof from db
+			//Deleting dummy course data from the database
+			final String sql_delete_course = "DELETE FROM kurse WHERE iz_kuerzel='" + username_prof + "'";
+			final SQLQuery delete_query_course = session1.createSQLQuery(sql_delete_course);
+			delete_query_course.executeUpdate();
 
-			final String sql_delete = "delete from kurse where iz_kuerzel='" + iz_kuerzel_prof + "'";
-			final SQLQuery delete_query = session1.createSQLQuery(sql_delete);
-			delete_query.executeUpdate();
-
-			// insert prof in db
-			final String sql_prof = "INSERT INTO kurse(kurs_nr,bezeichnung_kurs, semester_kurs, iz_kuerzel) VALUES (10000,'Planung', '2', '"
-					+ iz_kuerzel_prof + "');";
-			final SQLQuery query = session1.createSQLQuery(sql_prof);
+			//Inserting dummy course data into the database
+			final String sql_course = "INSERT INTO kurse(kurs_nr,bezeichnung_kurs, semester_kurs, iz_kuerzel) VALUES (10000,'Planung', '2', '"
+					+ username_prof + "');";
+			final SQLQuery query = session1.createSQLQuery(sql_course);
 			query.executeUpdate();
 
-			// close session
+			//Closing session
 			session1.close();
 
 		} catch (Exception e) {
@@ -138,24 +137,23 @@ public class DatabaseConnectorTest {
 			transaction.rollback();
 		}
 
-		// belegung_einzeln dummy
+		//Inserting and deleting dummy single assignment data
 		try {
 			final Session session1 = sessionFactory.openSession();
 			transaction = session1.beginTransaction();
 
-			// delete prof from db
+			//Deleting dummy single assignment data from the database
+			final String sql_delete_single_assignment = "DELETE FROM belegung_einzeln WHERE iz_kuerzel='" + username_student + "'";
+			final SQLQuery delete_query_single_assignment = session1.createSQLQuery(sql_delete_single_assignment);
+			delete_query_single_assignment.executeUpdate();
 
-			final String sql_delete = "delete from belegung_einzeln where iz_kuerzel='" + iz_kuerzel_student + "'";
-			final SQLQuery delete_query = session1.createSQLQuery(sql_delete);
-			delete_query.executeUpdate();
-
-			// insert prof in db
-			final String sql_prof = "INSERT INTO belegung_einzeln(iz_kuerzel, matrk_num, bezeichnung_kurs, semester_kurs, einzeln_kriterium, einzeln_note) VALUES ('"
-					+ iz_kuerzel_student + "', 12345, 'Planung', '2', 'Test kurs', 0.1);";
-			final SQLQuery query = session1.createSQLQuery(sql_prof);
+			//Inserting dummy single assignment data into the database
+			final String sql_single_assignment = "INSERT INTO belegung_einzeln(iz_kuerzel, matrk_num, bezeichnung_kurs, semester_kurs, einzeln_kriterium, einzeln_note) VALUES ('"
+					+ username_student + "', 12345, 'Planung', '2', 'Test kurs', 0.1);";
+			final SQLQuery query = session1.createSQLQuery(sql_single_assignment);
 			query.executeUpdate();
 
-			// close session
+			//Closing session
 			session1.close();
 
 		} catch (Exception e) {
@@ -163,24 +161,23 @@ public class DatabaseConnectorTest {
 			transaction.rollback();
 		}
 
-		// kursvorlage dummy
+		//Inserting and deleting dummy template data
 		try {
 			final Session session1 = sessionFactory.openSession();
 			transaction = session1.beginTransaction();
 
-			// delete prof from db
+			//Deleting dummy template data from the database
+			final String sql_delete_template = "DELETE FROM kursvorlage WHERE iz_kuerzel='" + username_prof + "'";
+			final SQLQuery delete_query_template = session1.createSQLQuery(sql_delete_template);
+			delete_query_template.executeUpdate();
 
-			final String sql_delete = "delete from kursvorlage where iz_kuerzel='" + iz_kuerzel_prof + "'";
-			final SQLQuery delete_query = session1.createSQLQuery(sql_delete);
-			delete_query.executeUpdate();
-
-			// insert prof in db
-			final String sql_prof = "INSERT INTO kursvorlage(kurs_nr, bezeichnung_kurs, semester_kurs, iz_kuerzel) VALUES (10000, 'Test Kursvorlage', '2','"
-					+ iz_kuerzel_prof + "');";
-			final SQLQuery query = session1.createSQLQuery(sql_prof);
+			//Inserting dummy template data into the database
+			final String sql_template = "INSERT INTO kursvorlage(kurs_nr, bezeichnung_kurs, semester_kurs, iz_kuerzel) VALUES (10000, 'Test Kursvorlage', '2','"
+					+ username_prof + "');";
+			final SQLQuery query = session1.createSQLQuery(sql_template);
 			query.executeUpdate();
 
-			// close session
+			//Closing session
 			session1.close();
 
 		} catch (Exception e) {
@@ -189,58 +186,51 @@ public class DatabaseConnectorTest {
 		}
 	}
 
+	//Test which should show all the courses of a logged student.
+	//If there is a course for the student then the test is successful.
 	@Test
-	public void studentKursListeSuchenStudentDa() {
-		final String iz_kuerzel_working = "test1111";
-		assertEquals("Student sollte da sein", 1,
-				DatabaseConnector.searchforCoursesbyUsername(iz_kuerzel_working).size());
-
+	public void coursesOfStudentIsThere() {
+		final String username_student_working = "stud1111";
+		assertEquals("Kurse vom Studenten sollten da sein", 1, DatabaseConnector.searchforCoursesbyUsername(username_student_working).size());
+	}
+    
+	//Test which should not show any course of a logged student.
+	//If there is no course for the student then the test is successful.
+	@Test
+	public void coursesOfStudentIsNotThere() {
+		final String username_student_not_working = "asadfhakdsf";
+		assertEquals("Kurse vom Studenten sollten nicht da sein", 0, DatabaseConnector.searchforCoursesbyUsername(username_student_not_working).size());
 	}
 
+	//Test which should show all the courses of a logged professor.
+	//If there is a course for the professor then the test is successful.
 	@Test
-	public void studentKursListeSuchenStudentNichtDa() {
-		final String iz_kuerzel_not_working = "asadfhakdsf";
-		assertEquals("Student sollte nicht da sein", 0,
-				DatabaseConnector.searchforCoursesbyUsername(iz_kuerzel_not_working).size());
-
+	public void coursesOfProfessorIsThere() {
+		final String username_prof_working = "prof1111";
+		assertEquals("Kurse vom Professor sollten da sein", 1, DatabaseConnector.searchforCoursesbyProf(username_prof_working).size());
 	}
 
+	//Test which should not show any course of a logged professor.
+	//If there is no course for the professor then the test is successful.
 	@Test
-	public void dozentKursListeSuchenDa() {
-		final String iz_kuerzel_working = "prof1111";
-		assertEquals("Kurs sollte da sein", 1, DatabaseConnector.searchforCoursesbyProf(iz_kuerzel_working).size());
-
+	public void coursesOfProfessorIsNotThere() {
+		final String username_prof_not_working = "asadfhakdsf";
+		assertEquals("Kurse vom Professor sollte nicht da sein", 0, DatabaseConnector.searchforCoursesbyProf(username_prof_not_working).size());
 	}
 
+	//Test which should show the template with course number 10000 of a logged professor.
+	//If there is a template with course number 10000 for the professor then the test is successful.
 	@Test
-	public void dozentKursListeSuchenNichtDa() {
-		final String iz_kuerzel_not_working = "asadfhakdsf";
-		assertEquals("Student sollte nicht da sein", 0,
-				DatabaseConnector.searchforCoursesbyProf(iz_kuerzel_not_working).size());
-
+	public void templateIsCorrectForProfessor() {
+		final int course_nr = 10000;
+		assertEquals("Kursnummer ist richtig", 1, DatabaseConnector.template(course_nr).size());
 	}
-
+    
+	//Test which should not show the template with course number 9999 of a logged professor.
+	//If there is no template with the course number 9999 for the professor then the test is successful.
 	@Test
-	public void vorlageKursRichtig() {
-		final int kurs_nr = 10000;
-		assertEquals("Kursnummer richtig", 1, DatabaseConnector.template(kurs_nr).size());
-
-	}
-
-	@Test
-	public void vorlageKursFalsch() {
-		final int kurs_nr = 9999;
-		assertEquals("Kursnummer falsch", 0, DatabaseConnector.template(kurs_nr).size());
-
-	}
-	
-	@Test
-	public void testCreateTemplate(){
-		assertEquals("Test create template", true, DatabaseConnector.createTemplate(10001, "Test titel", "2", "prof1111"));
-	}
-	
-	@Test
-	public void testDeleteTemplate(){
-		assertEquals("Test delete template", true, DatabaseConnector.deleteTemplate(10001));
+	public void templateIsNotCorrectForProfessor() {
+		final int course_nr = 9999;
+		assertEquals("Kursnummer ist falsch", 0, DatabaseConnector.template(course_nr).size());
 	}
 }
