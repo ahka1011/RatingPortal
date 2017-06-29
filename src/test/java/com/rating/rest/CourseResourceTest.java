@@ -132,7 +132,7 @@ public class CourseResourceTest {
 			final SQLQuery query = session1.createSQLQuery(sql_course);
 			query.executeUpdate();
 
-			// close session
+			//Closing session
 			session1.close();
 
 		} catch (Exception e) {
@@ -146,9 +146,9 @@ public class CourseResourceTest {
 			transaction = session1.beginTransaction();
 
 			// Deleting dummy single assignment data from the database
-			final String sql_delete = "delete from belegung_einzeln where iz_kuerzel='" + username_student + "'";
-			final SQLQuery delete_query = session1.createSQLQuery(sql_delete);
-			delete_query.executeUpdate();
+			final String sql_delete_single_assignment = "DELETE FROM belegung_einzeln where iz_kuerzel='" + username_student + "'";
+			final SQLQuery delete_query_single_assignment = session1.createSQLQuery(sql_delete_single_assignment);
+			delete_query_single_assignment.executeUpdate();
 
 			//Inserting dummy single assignment data into the database
 			final String sql_single_assignment = "INSERT INTO belegung_einzeln(iz_kuerzel, matrk_num, bezeichnung_kurs, semester_kurs, einzeln_kriterium, einzeln_note) VALUES ('"
