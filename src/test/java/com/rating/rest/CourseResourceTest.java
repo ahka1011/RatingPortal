@@ -97,12 +97,12 @@ public class CourseResourceTest {
 			final Session session1 = sessionFactory.openSession();
 			transaction = session1.beginTransaction();
 
-			// Deleting dummy data of professor from the database
+			// Deleting dummy professor data from the database
 			final String sql_delete_prof = "DELETE FROM professor WHERE iz_kuerzel='" + username_prof + "'";
 			final SQLQuery delete_query_prof = session1.createSQLQuery(sql_delete_prof);
 			delete_query_prof.executeUpdate();
 
-			//Inserting dummy data of professor into the database
+			//Inserting dummy professor data into the database
 			final String sql_prof = "INSERT INTO professor(iz_kuerzel, vorname, nachname, email_adresse) VALUES ('"
 					+ username_prof + "', '" + firstname_prof + "', '" + lastname_prof + "', '" + email_prof + "');";
 			final SQLQuery query_prof = session1.createSQLQuery(sql_prof);
