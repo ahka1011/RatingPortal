@@ -35,7 +35,7 @@ public class LDAP_Entry {
 			String userID ="ID_Admin";
 			String pwd ="Password_Admin";
 			
-			String s_p = "CN=" + userID + "OU=_sg_WIB,OU=_fk_IWI,OU=HS Studenten,OU=HS Users,OU=HS,DC=ads,DC=hs-karlsruhe,DC=de";
+			String s_p = "CN=" + userID + ",OU=_sg_WIB,OU=_fk_IWI,OU=HS Studenten,OU=HS Users,OU=HS,DC=ads,DC=hs-karlsruhe,DC=de";
 
 			Hashtable<String, String> env1 = new Hashtable<String, String>();
 			env1.put(Context.INITIAL_CONTEXT_FACTORY, icf);
