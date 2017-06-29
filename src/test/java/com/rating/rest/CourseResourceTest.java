@@ -67,20 +67,20 @@ public class CourseResourceTest {
 
 		Transaction transaction = null;
 
-		//Inserting and deleting dummy data of students
+		//Inserting and deleting dummy student data
 		try {
 			final Session session1 = sessionFactory.openSession();
 			transaction = session1.beginTransaction();
 			
-			// Deleting dummy data of student from the database
+			// Deleting dummy student data from the database
 			final String sql_delete_stundent = "DELETE FROM student WHERE iz_kuerzel='" + username_student + "'";
 			final SQLQuery delete_query_student = session1.createSQLQuery(sql_delete_stundent);
 			delete_query_student.executeUpdate();
 
-			//Inserting dummy data of student into the database
+			//Inserting dummy student data into the database
 			final String sql_student = "INSERT INTO student(iz_kuerzel, vorname, nachname, matrk_num, email_adresse) VALUES ('"
-					+ username_student + "', '" + vorname + "', '" + nachname + "', '" + matrk_num + "', '"
-					+ email_prof + "');";
+					+ username_student + "', '" + firstname_student + "', '" + lastname_student + "', '" + student_id + "', '"
+					+ email_student + "');";
 			final SQLQuery query_student = session1.createSQLQuery(sql_student);
 			query_student.executeUpdate();
 
@@ -92,7 +92,7 @@ public class CourseResourceTest {
 			transaction.rollback();
 		}
 
-		//Inserting and deleting dummy data of students
+		//Inserting and deleting dummy professor data
 		try {
 			final Session session1 = sessionFactory.openSession();
 			transaction = session1.beginTransaction();
@@ -102,13 +102,13 @@ public class CourseResourceTest {
 			final SQLQuery delete_query_prof = session1.createSQLQuery(sql_delete_prof);
 			delete_query_prof.executeUpdate();
 
-			// insert prof in db
+			//Inserting dummy data of professor into the database
 			final String sql_prof = "INSERT INTO professor(iz_kuerzel, vorname, nachname, email_adresse) VALUES ('"
 					+ username_prof + "', '" + firstname_prof + "', '" + lastname_prof + "', '" + email_prof + "');";
 			final SQLQuery query_prof = session1.createSQLQuery(sql_prof);
 			query_prof.executeUpdate();
 
-			// close session
+			//Closing session
 			session1.close();
 
 		} catch (Exception e) {
@@ -116,21 +116,20 @@ public class CourseResourceTest {
 			transaction.rollback();
 		}
 
-		// kurs dummy
+		//Inserting and deleting dummy course data 
 		try {
 			final Session session1 = sessionFactory.openSession();
 			transaction = session1.beginTransaction();
 
-			// delete prof from db
+			// Deleting dummy course data from the database
+			final String sql_delete_course = "DELETE FROM kurse where iz_kuerzel='" + username_prof + "'";
+			final SQLQuery delete_query_course = session1.createSQLQuery(sql_delete_course);
+			delete_query_course.executeUpdate();
 
-			final String sql_delete = "delete from kurse where iz_kuerzel='" + iz_kuerzel_prof + "'";
-			final SQLQuery delete_query = session1.createSQLQuery(sql_delete);
-			delete_query.executeUpdate();
-
-			// insert prof in db
-			final String sql_prof = "INSERT INTO kurse(kurs_nr,bezeichnung_kurs, semester_kurs, iz_kuerzel) VALUES (10000,'Planung', '2', '"
-					+ iz_kuerzel_prof + "');";
-			final SQLQuery query = session1.createSQLQuery(sql_prof);
+			//Inserting dummy data of professor into the database
+			final String sql_course = "INSERT INTO kurse(kurs_nr,bezeichnung_kurs, semester_kurs, iz_kuerzel) VALUES (10000,'Planung', '2', '"
+					+ username_prof + "');";
+			final SQLQuery query = session1.createSQLQuery(sql_course);
 			query.executeUpdate();
 
 			// close session
@@ -141,24 +140,23 @@ public class CourseResourceTest {
 			transaction.rollback();
 		}
 
-		// belegung_einzeln dummy
+		//Inserting and deleting dummy single assignment data
 		try {
 			final Session session1 = sessionFactory.openSession();
 			transaction = session1.beginTransaction();
 
-			// delete prof from db
-
-			final String sql_delete = "delete from belegung_einzeln where iz_kuerzel='" + iz_kuerzel_student + "'";
+			// Deleting dummy single assignment data from the database
+			final String sql_delete = "delete from belegung_einzeln where iz_kuerzel='" + username_student + "'";
 			final SQLQuery delete_query = session1.createSQLQuery(sql_delete);
 			delete_query.executeUpdate();
 
-			// insert prof in db
-			final String sql_prof = "INSERT INTO belegung_einzeln(iz_kuerzel, matrk_num, bezeichnung_kurs, semester_kurs, einzeln_kriterium, einzeln_note) VALUES ('"
-					+ iz_kuerzel_student + "', 12345, 'Planung', '2', 'Test kurs', 0.1);";
-			final SQLQuery query = session1.createSQLQuery(sql_prof);
+			//Inserting dummy single assignment data into the database
+			final String sql_single_assignment = "INSERT INTO belegung_einzeln(iz_kuerzel, matrk_num, bezeichnung_kurs, semester_kurs, einzeln_kriterium, einzeln_note) VALUES ('"
+					+ username_student + "', 12345, 'Planung', '2', 'Test kurs', 0.1);";
+			final SQLQuery query = session1.createSQLQuery(sql_single_assignment);
 			query.executeUpdate();
 
-			// close session
+			//Closing session
 			session1.close();
 
 		} catch (Exception e) {
@@ -166,24 +164,23 @@ public class CourseResourceTest {
 			transaction.rollback();
 		}
 
-		// kursvorlage dummy
+		//Inserting and deleting dummy template data
 		try {
 			final Session session1 = sessionFactory.openSession();
 			transaction = session1.beginTransaction();
 
-			// delete prof from db
-
-			final String sql_delete = "delete from kursvorlage where iz_kuerzel='" + iz_kuerzel_prof + "'";
+			// Deleting dummy template data from the database
+			final String sql_delete = "DELETE FROM kursvorlage WHERE iz_kuerzel='" + username_prof + "'";
 			final SQLQuery delete_query = session1.createSQLQuery(sql_delete);
 			delete_query.executeUpdate();
 
-			// insert prof in db
-			final String sql_prof = "INSERT INTO kursvorlage(kurs_nr, bezeichnung_kurs, semester_kurs, iz_kuerzel) VALUES (10000, 'Test Kursvorlage', '2','"
-					+ iz_kuerzel_prof + "');";
-			final SQLQuery query = session1.createSQLQuery(sql_prof);
+			//Inserting dummy template data into the database
+			final String sql_template = "INSERT INTO kursvorlage(kurs_nr, bezeichnung_kurs, semester_kurs, iz_kuerzel) VALUES (10000, 'Test Kursvorlage', '2','"
+					+ username_prof + "');";
+			final SQLQuery query = session1.createSQLQuery(sql_template);
 			query.executeUpdate();
 
-			// close session
+			//Closing session
 			session1.close();
 
 		} catch (Exception e) {
@@ -194,16 +191,16 @@ public class CourseResourceTest {
 
 	@Test
 	public void studentKursListeSuchenStudentDa() {
-		final String iz_kuerzel_working = "test1111";
+		final String username_student_working = "stud1111";
 		assertEquals("Kurse sollten da sein", 1,
-				courseResource.getCoursesOfStudent("asdfadsfasdf", iz_kuerzel_working).size());
+				courseResource.getCoursesOfStudent("abcd1234", username_student_working).size());
 	}
 
 	@Test
 	public void studentKursListeSuchenStudentNichtDa() {
-		final String iz_kuerzel_not_working = "asadfhakdsf";
-		assertEquals("Student sollte nicht da sein", 0,
-				courseResource.getCoursesOfStudent("asdfadsfasdf", iz_kuerzel_not_working).size());
+		final String username_student_not_working = "abcd1234";
+		assertEquals("Kurse sollten nicht da sein", 0,
+				courseResource.getCoursesOfStudent("asdfadsfasdf", username_student_not_working).size());
 
 	}
 
