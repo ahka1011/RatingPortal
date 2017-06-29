@@ -1,6 +1,5 @@
 package com.rating.rest;
 
-import java.io.UnsupportedEncodingException;
 
 import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
@@ -30,13 +29,12 @@ public class SessionResource extends BaseResource {
 	 * @param password related password
 	 * @return User object with user-related data from LDAP
 	 * @throws NamingException if the authentication fails
-	 * @throws UnsupportedEncodingException if the Character Encoding is not supported
 	 */
 	@POST
 	@Produces("application/json")
 	@Path("/login")
 	public User Login(@FormParam("username") String username, @FormParam("password") String password)
-			throws NamingException, UnsupportedEncodingException {
+			throws NamingException {
 
 		HttpSession s = request.getSession();
 		if (s != null) {

@@ -290,18 +290,18 @@ public class CourseResource extends BaseResource {
 	@Path("/student/{username}")
 	public List<Course> getCoursesOfStudent(@HeaderParam("token") String token,
 			@PathParam("username") String username) {
-		List<Course> c = null;
+		List<Course> courses = null;
 		try {
 			if (isValid(token)) {
-				c = DatabaseConnector.searchforCoursesbyUsername(username);
-				return c;
+				courses = DatabaseConnector.searchforCoursesbyUsername(username);
+				return courses;
 			} else {
-				return c;
+				return courses;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return c;
+		return courses;
 	}
 
 	/** Professor can get a list of his courses.
