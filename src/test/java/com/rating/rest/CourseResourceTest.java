@@ -170,8 +170,8 @@ public class CourseResourceTest {
 			transaction = session1.beginTransaction();
 
 			// Deleting dummy template data from the database
-			final String sql_delete = "DELETE FROM kursvorlage WHERE iz_kuerzel='" + username_prof + "'";
-			final SQLQuery delete_query = session1.createSQLQuery(sql_delete);
+			final String sql_delete_template = "DELETE FROM kursvorlage WHERE iz_kuerzel='" + username_prof + "'";
+			final SQLQuery delete_query = session1.createSQLQuery(sql_delete_template);
 			delete_query.executeUpdate();
 
 			//Inserting dummy template data into the database
@@ -188,18 +188,19 @@ public class CourseResourceTest {
 			transaction.rollback();
 		}
 	}
-
+    
+	
 	@Test
-	public void studentKursListeSuchenStudentDa() {
+	public void coursesOfStudentIsThere() {
 		final String username_student_working = "stud1111";
-		assertEquals("Kurse sollten da sein", 1,
+		assertEquals("Kurse vom Studenten sollten da sein", 1,
 				courseResource.getCoursesOfStudent("abcd1234", username_student_working).size());
 	}
 
 	@Test
-	public void studentKursListeSuchenStudentNichtDa() {
+	public void coursesOfStudentIsNotThere() {
 		final String username_student_not_working = "abcd1234";
-		assertEquals("Kurse sollten nicht da sein", 0,
+		assertEquals("Kurse vom Studenten sollten nicht da sein", 0,
 				courseResource.getCoursesOfStudent("asdfadsfasdf", username_student_not_working).size());
 
 	}
