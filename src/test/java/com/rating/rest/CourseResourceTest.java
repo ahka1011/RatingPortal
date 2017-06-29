@@ -19,10 +19,10 @@ import com.rating.domain.Student;
 import com.rating.domain.Template;
 
 /**
- * This is the test class for the class CourseResource. In this class several JUnit Tests
+ * This is the test class for the class CourseResource. In this test class several JUnit Tests
  * are implemented for the methods of the class CourseResource. 
  * For the JUnit tests, dummy data for student, professor, course, template and individual
- * assignment is declared.
+ * assignment is created.
  * Using dummy data, the JUnit tests can be executed also by other team members. No certain
  * data is required for the execution of the JUnit Tests.
  * The version 4.12 from JUnit is used here.

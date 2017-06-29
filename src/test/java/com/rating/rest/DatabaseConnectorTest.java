@@ -18,8 +18,23 @@ import com.rating.domain.Professor;
 import com.rating.domain.Student;
 import com.rating.domain.Template;
 
+/**
+ * This is the test class for the class DatabaseConnector. In this test class several JUnit Tests
+ * are implemented for the database methods.
+ * For the JUnit tests, dummy data for student, professor, course, template and individual
+ * assignment is createad.
+ * Using dummy data, the JUnit tests can be executed also by other team members. No certain
+ * data is required for the execution of the JUnit Tests.
+ * The version 4.12 from JUnit is used here.
+ * 
+ * @author Tolga Duman
+ *
+ */
+
 public class DatabaseConnectorTest {
 
+	//Executed before each test. It is used to prepare the test environment 
+	//(e.g., read input data, initialize the class).
 	@BeforeClass
 	public static void setUp() {
 		final Configuration config = new Configuration();
@@ -36,31 +51,37 @@ public class DatabaseConnectorTest {
 
 		Transaction transaction = null;
 
-		// declare dummy data
-		final String iz_kuerzel_student = "test1111";
-		final String iz_kuerzel_prof = "prof1111";
-		final String vorname = "Max";
-		final String nachname = "Mustermann";
-		final String matrk_num = "12345";
-		final String email_adresse = "test1111@hs-karlsruhe.de";
+		//Declaring dummy student data
+		final String username_student = "stud1111";
+		final String firstname_student = "student";
+		final String lastname_student = "student_nachname";
+		final String student_id = "12345";
+		final String email_student = "stud1111@hs-karlsruhe.de";
+		
+		//Declaring dummy professor data
+		final String username_prof = "prof1111";
+		final String firstname_prof = "professor";
+		final String lastname_prof = "professor_nachname";
+		final String email_prof = "prof1111@hs-karlsruhe.de";
 
-		// student dummy
+		//Inserting and deleting dummy student data
 		try {
 			final Session session1 = sessionFactory.openSession();
 			transaction = session1.beginTransaction();
-			// delete student from db
-			final String sql_delete_stundent = "delete from student where iz_kuerzel='" + iz_kuerzel_student + "'";
+			
+			// Deleting dummy student data from the database
+			final String sql_delete_stundent = "delete from student where iz_kuerzel='" + username_student + "'";
 			final SQLQuery delete_query_student = session1.createSQLQuery(sql_delete_stundent);
 			delete_query_student.executeUpdate();
 
-			// insert student in db
+			//Inserting dummy student data into the database
 			final String sql_student = "INSERT INTO student(iz_kuerzel, vorname, nachname, matrk_num, email_adresse) VALUES ('"
-					+ iz_kuerzel_student + "', '" + vorname + "', '" + nachname + "', '" + matrk_num + "', '"
-					+ email_adresse + "');";
+					+ username_student + "', '" + firstname_student + "', '" + lastname_student + "', '" + student_id + "', '"
+					+ email_student + "');";
 			final SQLQuery query_student = session1.createSQLQuery(sql_student);
 			query_student.executeUpdate();
 
-			// close session
+			//Closing session
 			session1.close();
 
 		} catch (Exception e) {
@@ -68,23 +89,23 @@ public class DatabaseConnectorTest {
 			transaction.rollback();
 		}
 
-		// prof dummy
+		//Inserting and deleting dummy professor data
 		try {
 			final Session session1 = sessionFactory.openSession();
 			transaction = session1.beginTransaction();
 
-			// delete prof from db
-			final String sql_delete_prof = "delete from professor where iz_kuerzel='" + iz_kuerzel_prof + "'";
+			// Deleting dummy professor data from the database
+			final String sql_delete_prof = "DELETE FROM professor WHERE iz_kuerzel='" + username_prof + "'";
 			final SQLQuery delete_query_prof = session1.createSQLQuery(sql_delete_prof);
 			delete_query_prof.executeUpdate();
 
-			// insert prof in db
+			//Inserting dummy professor data into the database
 			final String sql_prof = "INSERT INTO professor(iz_kuerzel, vorname, nachname, email_adresse) VALUES ('"
-					+ iz_kuerzel_prof + "', '" + vorname + "', '" + nachname + "', '" + email_adresse + "');";
+					+ username_prof + "', '" + firstname_prof + "', '" + lastname_prof + "', '" + email_prof + "');";
 			final SQLQuery query_prof = session1.createSQLQuery(sql_prof);
 			query_prof.executeUpdate();
 
-			// close session
+			//Closing session
 			session1.close();
 
 		} catch (Exception e) {
