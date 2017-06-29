@@ -35,17 +35,17 @@ public class CourseResourceTest {
 
 	CourseResource courseResource;
 		
-	//Declaring dummy data for student
+	//Declaring dummy student data
 	final String username_student = "stud1111";
 	final String firstname_student = "student";
-	final String lastname_student = "student";
+	final String lastname_student = "student_nachname";
 	final String student_id = "12345";
 	final String email_student = "stud1111@hs-karlsruhe.de";
 	
-	//Declaring dummy data for professor
+	//Declaring dummy professor data
 	final String username_prof = "prof1111";
 	final String firstname_prof = "professor";
-	final String lastname_prof = "ProfMann";
+	final String lastname_prof = "professor_nachname";
 	final String email_prof = "prof1111@hs-karlsruhe.de";
 	
     //Executed before each test. It is used to prepare the test environment 
