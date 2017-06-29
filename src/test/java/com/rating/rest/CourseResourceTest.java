@@ -189,35 +189,36 @@ public class CourseResourceTest {
 		}
 	}
     
-	
+	//Test which should show all the courses of a logged student
 	@Test
 	public void coursesOfStudentIsThere() {
 		final String username_student_working = "stud1111";
 		assertEquals("Kurse vom Studenten sollten da sein", 1,
 				courseResource.getCoursesOfStudent("abcd1234", username_student_working).size());
 	}
-
+    
+	//Test which should not show any course of a logged student
 	@Test
 	public void coursesOfStudentIsNotThere() {
 		final String username_student_not_working = "abcd1234";
 		assertEquals("Kurse vom Studenten sollten nicht da sein", 0,
 				courseResource.getCoursesOfStudent("asdfadsfasdf", username_student_not_working).size());
-
 	}
-
+    
+	//Test which should show all the courses of a logged professor
 	@Test
-	public void dozentKursListeSuchenDa() {
-		final String iz_kuerzel_working = "prof1111";
-		assertEquals("Kurs sollte da sein", 1,
-				courseResource.getCoursesOfProfessor("asdfasdfadsf", iz_kuerzel_working).size());
-
+	public void coursesOfProfessorIsThere() {
+		final String username_prof_working = "prof1111";
+		assertEquals("Kurse vom Professor sollten da sein", 1,
+				courseResource.getCoursesOfProfessor("abcd1234", username_prof_working).size());
 	}
-
+    
+	//Test which should not show any course of a logged professor
 	@Test
 	public void dozentKursListeSuchenNichtDa() {
-		final String iz_kuerzel_not_working = "asadfhakdsf";
-		assertEquals("Kurs sollte nicht da sein", 0,
-				courseResource.getCoursesOfProfessor("asdfasdfadsf", iz_kuerzel_not_working).size());
+		final String username_prof_not_working = "abcd1234";
+		assertEquals("Kurse vom Studenten sollte nicht da sein", 0,
+				courseResource.getCoursesOfProfessor("abcdefgh", username_prof_not_working).size());
 
 	}
 
